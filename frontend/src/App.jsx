@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Trending from "./components/trending";
+import Navbar from "./components/Navbar";
+import Polls from "./components/polls";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -13,7 +15,9 @@ const App = () => {
 
   return (
     <div>
-      <Trending></Trending>
+      <Navbar></Navbar>
+      {/* <Trending></Trending> */}
+      <Polls></Polls>
     </div>
   );
 };

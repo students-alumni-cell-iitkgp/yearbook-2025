@@ -18,6 +18,22 @@
   position: relative;
   bottom: 0px;
   width: 80%;
+  z-index: 2;
+
+}
+.content::before{
+  content: "YEARBOOK";
+  position: fixed;
+  text-align: center;
+  font-size:15rem;
+  filter: blur(19px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  z-index: -1;
+  
+  
 }
 
 .trending-container {
@@ -64,7 +80,7 @@
 
 /* Image Placeholder */
 .post-image {
-  height: 20rem;
+  height: 100%;
   background: rgb(225, 216, 216);
   border-radius: 10px;
   margin-top: 10px;
@@ -72,7 +88,7 @@
 }
 
 .post-image img {
-  height: 20rem;;
+  height: 100%;
   border-radius: 10px;
 
   aspect-ratio: 1;
@@ -117,6 +133,27 @@ button.liked {
   gap: 10px;
   margin-top: 10px;
 }
+.comment{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  margin: 10px;
+  margin-top: 10px;
+}
+
+.comment span{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.comment-author{
+  font-weight: bold;
+}
+
 
 .comment-section input {
   flex: 1;

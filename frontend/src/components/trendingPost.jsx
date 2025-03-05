@@ -83,11 +83,11 @@ function TrendingPost({ post }) {
         <div className="comments-list">
           {comments.map((comment, index) => (
             <div key={index} className="comment">
-              <div className="profile-pic small"><img src="../img/profilepic_test.jpg" alt="" /></div>
-              <div>
-                <span className="comment-author">{comment.author}</span>:{" "}
-                {comment.text}
-              </div>
+              <div className="profile-pic small"><img src="../../src/img/profilepic_test2.jpg" alt="" /></div>
+                <span className="comment-author">{comment.author}</span>{" "}
+                <span className="comment-text">
+                  {comment.text}
+                  </span>
             </div>
           ))}
         </div>

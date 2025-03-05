@@ -1,0 +1,161 @@
+/* General Navbar Styling */
+.navbar {
+    background: #19376D;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .nav-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  
+  .search-input{
+    color: black;
+    background-color: #A5D7E8;
+    height: 20px;
+    width: 150px;
+    border: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  align-content: center;
+  margin-bottom: 5px;
+  margin-left: 40px;
+
+  }
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+  }
+  
+  .logo img {
+    width: 40px;
+  }
+  
+  .logo h2 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #A5D7E8;
+  }
+  
+  /* Desktop Menu */
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #c0c0c0;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+.profilepic-navbar{
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  align-content: center;
+}
+.profilepic-navbar img{
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-left: 20px;
+  position: relative;
+  top: -15px;
+}
+  
+  .nav-links li a:hover {
+    color: white;
+  }
+  
+  /* Right Icons */
+  .icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+button:hover{
+  outline: none;
+  
+}
+
+  
+  .icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: #c0c0c0;
+  }
+  
+  .icon:hover {
+    color: white;
+  }
+  
+  /* Menu Button (Hidden on Desktop) */
+  .menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Mobile Sidebar */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #1e3a78;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mobile-menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .mobile-menu li {
+    margin-bottom: 20px;
+  }
+  
+  .mobile-menu li a {
+    text-decoration: none;
+    color: #c0c0c0;
+    font-size: 18px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .menu-btn {
+      display: block;
+    }
+  }
+  

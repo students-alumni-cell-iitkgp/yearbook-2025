@@ -17,6 +17,22 @@ function Trending() {
       caption: "This is another post.",
       comments: [],
     },
+    {
+      id: 2,
+      author: { name: "John Doe" },
+      caption: "This is another post.",
+      comments: [],
+    },{
+      id: 2,
+      author: { name: "John Doe" },
+      caption: "This is another post.",
+      comments: [],
+    },{
+      id: 2,
+      author: { name: "John Doe" },
+      caption: "This is another post.",
+      comments: [],
+    },
   ]);
 
   return (
