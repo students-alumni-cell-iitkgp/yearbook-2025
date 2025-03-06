@@ -27,12 +27,14 @@
     height: 20px;
     width: 150px;
     border: none;
-  border-radius: 10px;
-  padding-left: 10px;
-  align-content: center;
-  margin-bottom: 5px;
-  margin-left: 40px;
-
+    border-radius: 10px;
+    position: fixed;
+    top: 20px;
+    right: 250px;
+    padding-left: 10px;
+    align-content: center;
+    margin-bottom: 5px;
+    margin-left: 40px;
   }
   /* Logo */
   .logo {
@@ -69,7 +71,9 @@
   }
 
 .profilepic-navbar{
-  width: 40px;
+  position: fixed;
+  top: -9px;
+  right: 70px;
   aspect-ratio: 1;
   border-radius: 50%;
   align-content: center;
@@ -78,9 +82,6 @@
   width: 40px;
   aspect-ratio: 1;
   border-radius: 50%;
-  margin-left: 20px;
-  position: relative;
-  top: -15px;
 }
   
   .nav-links li a:hover {
@@ -88,10 +89,21 @@
   }
   
   /* Right Icons */
-  .icons {
+  .icon-notification {
     display: flex;
     align-items: center;
     gap: 15px;
+    position: fixed;
+    top: 20px;
+    right: 150px;
+  }
+  .icon-search {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: fixed;
+    top: 20px;
+    right: 200px;
   }
 button:hover{
   outline: none;
@@ -148,14 +160,30 @@ button:hover{
     font-size: 18px;
   }
   
-  /* Responsive Design */
+  /* Responsive Desin */
   @media (max-width: 768px) {
+
+    .navbar{
+      height: 2.5rem;
+      width: 100vw;
+    }
+
     .nav-links {
       display: none;
     }
     
     .menu-btn {
       display: block;
+      margin-top: 10px;
+    }
+    .profilepic-navbar{
+      width: 40px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      margin-right: 20px;
+      margin-top: 10px;
+      margin-left: 10px;
+      align-content: center;
     }
   }
   
