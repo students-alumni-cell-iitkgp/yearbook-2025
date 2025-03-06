@@ -3,43 +3,55 @@ body{
 }
 .login-container {
   position: relative;
-  top: 25vh;
+  top: 23vh;
   left: 15vw;
   background: #A5D7E8;
   backdrop-filter: blur(10px);
   padding: 3rem;
   border-radius: 1.5rem;
   width: 100%;
-  max-width: 400px;
   position: relative;
   z-index: 1;
+  max-width: 400px;
+  opacity: 0.8;
 }
 .main-contanier{
-  background-color: black; 
+  /* background: url("../../src/img/bg-login-cover01.png"); */
+  background: linear-gradient(to right, #A5D7E8, #0B2447);
   width: 100vw;
   height: 100vh;
+  background-size: 100% 100%;
 
 
 }
+.label-login{
+  font-weight: bold;
+  color: #0B2447;
+}
+
 .sac-name{
+  color: #0B2447;
   text-align: center;
   align-items: center;
-  padding: 0px;
   margin: 0px;
-  background-color: red;
+  background-color: #A5D7E8;
   font-size: 4rem;
-  position: absolute;
-  top: 47vh;
-  left: -20rem;
+  position: fixed;
+  top: 42vh;
+  left: -46vw;
   font-weight: bold;
   rotate: -90deg;
+  width: 100vw;
+  padding: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 
 .logo-container {
   position: absolute;
-  left: 50vw;
-  top: -3vh;
+  left: 60vw;
+  top: 25vh;
   width: 500px;
   text-align: center;
   z-index: 2;
@@ -53,18 +65,21 @@ body{
 }
 
 .portal-title {
+  background-color: #0B2447;
+  border-radius: 20px;
   color: #A5D7E8;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 800;
   margin: 0;
 }
 
 .year {
+  border-radius: 20px;
   color: #A5D7E8;
-  font-size: 3.5rem;
-  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
 }
-
 /* Form styles */
 .form-title {
   font-size: 2rem;
@@ -122,24 +137,6 @@ body{
   color: white;
 }
 
-@media (max-width: 768px) {
-  .logo-container {
-    display: none;
-    /* position: static;
-    text-align: center;
-    margin-bottom: 2rem;
-    background: #1937b1;
-    margin: -3rem -3rem 2rem -3rem;
-    padding: 2rem;
-    border-radius: 1.5rem 1.5rem 0 0; */
-  }
-  
-  .login-container {
-    margin: 1rem;
-    padding: 2rem;
-    width: auto;
-  }
-}
 
 /* Target the label inside the div with id 'div_id_password' */
 #div_id_password label {
@@ -155,8 +152,11 @@ body{
   left: 0;
 }
 .login-dob{
-  width: 300px;
+  width: 90%;
+  color: black;
   margin: 10px;
+  font-size: 16px;
+
   height: 30px;
   background-color: white;
   border: none;
@@ -165,11 +165,54 @@ body{
 }
 
 .login-roll{
-  width: 300px;
+  width: 90%;
+  color: black;
+  font-size: 16px;
   margin: 10px;
   height: 30px;
   background-color: white;
   border: none;
   border-radius: 10px;
   padding-left: 10px;
+}
+@media (max-width: 1250px) {
+  .logo-container {
+    display: none;
+  }
+  
+  .login-container {
+    width: auto;
+    transition: 0.3s ease-in-out;
+
+  }
+}
+
+@media (max-width: 1050px) {
+  .sac-name {
+    display: none;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .login-container {
+    position: relative;
+    top: 20vh;
+    left: 0;
+    width: 90%;
+    transition: 0.3s ease-in-out;
+  }
+  .main-contanier{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+  }
+  .main-contanier{
+    background: linear-gradient(to right, #A5D7E8, #0B2447);
+    width: 100vw;
+    height: 100vh;
+    background-size: 100% 100%;
+  
+  
+  }
+  
 }

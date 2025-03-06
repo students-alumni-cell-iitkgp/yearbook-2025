@@ -51,12 +51,12 @@ const Navbar = () => {
       {isOpen && (
         <div className="mobile-menu">
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Trending</a></li>
-            <li><a href="#">Fill Itch List</a></li>
-            <li><a href="#">View Itch List</a></li>
-            <li><a href="#">Testimonial</a></li>
-            <li><a href="#">Polls</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="/Trending">Trending</a></li>
+            <li><a href="/ItchListPage">Fill Itch List</a></li>
+            <li><a href="/ViewItchList">View Itch List</a></li>
+            <li><a href="">Testimonial</a></li>
+            <li><a href="/Polls">Polls</a></li>
           </ul>
         </div>
       )}

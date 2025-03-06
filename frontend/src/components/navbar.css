@@ -61,7 +61,7 @@
   .nav-links {
     display: flex;
     position: relative;
-    right: -200px;
+    right: -300px;
     gap: 20px;
     list-style: none;
     align-items: center;
@@ -168,7 +168,7 @@ button:hover{
   }
   
   /* Responsive Desin */
-  @media (max-width: 1200px) {
+  @media (max-width: 1350px) {
 
     .navbar{
       height: 2.5rem;
