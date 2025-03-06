@@ -3,6 +3,10 @@ import axios from "axios";
 import Trending from "./components/trending";
 import Navbar from "./components/Navbar";
 import Polls from "./components/polls";
+import ViewItchList from "./components/viewItchList";
+import ItchListPage from "./components/itchList";
+import Login from "./components/login";
+
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -15,9 +19,13 @@ const App = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
+      <Login></Login>
       {/* <Trending></Trending> */}
-      <Polls></Polls>
+      {/* <Polls></Polls> */}
+      {/* <ViewItchList></ViewItchList> */}
+      {/* <ItchListPage></ItchListPage> */}
+
     </div>
   );
 };
