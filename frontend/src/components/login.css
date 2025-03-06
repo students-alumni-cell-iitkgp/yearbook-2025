@@ -1,3 +1,6 @@
+body{
+  margin: 0px;
+}
 .login-container {
   position: relative;
   top: 25vh;
@@ -18,6 +21,21 @@
 
 
 }
+.sac-name{
+  text-align: center;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  background-color: red;
+  font-size: 4rem;
+  position: absolute;
+  top: 47vh;
+  left: -20rem;
+  font-weight: bold;
+  rotate: -90deg;
+}
+
+
 .logo-container {
   position: absolute;
   left: 50vw;
@@ -79,13 +97,15 @@
   justify-content: center;
   align-items: center;
 }
-.btn-login {
+.btn {
+  align-items: center;
+  text-align: center;
   background: #0B2447;
   color: white;
   border: none;
-  padding: 1rem;
+  padding: 20px 0px 20px 0px;
   border-radius: 0.5rem;
-  width: 100%;
+  width: 80%;
   font-weight: bold;
   font-size: 1.1rem;
   cursor: pointer;
@@ -94,24 +114,12 @@
   margin-bottom: 1rem;
 }
 
-.btn-primary:hover {
-  background: #132c8f;
+.btn:hover {
+  background: #19376D;
   transform: translateY(-1px);
 }
-
-.text-muted {
-  color: #6b7280 !important;
-}
-
-.text-muted a {
-  color: #1937b1;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: medium;
-}
-
-.text-muted a:hover {
-  text-decoration: underline;
+.btn a{
+  color: white;
 }
 
 @media (max-width: 768px) {
