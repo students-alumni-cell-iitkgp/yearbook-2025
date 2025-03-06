@@ -16,8 +16,8 @@ const App = () => {
   return (
     <div>
       <Navbar></Navbar>
-      {/* <Trending></Trending> */}
-      <Polls></Polls>
+      <Trending></Trending>
+      {/* <Polls></Polls> */}
     </div>
   );
 };
