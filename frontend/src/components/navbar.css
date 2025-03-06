@@ -41,6 +41,9 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    position: fixed;
+    top: -8px;
+    left: 40px;    
 
   }
   
@@ -57,6 +60,8 @@
   /* Desktop Menu */
   .nav-links {
     display: flex;
+    position: relative;
+    right: -200px;
     gap: 20px;
     list-style: none;
     align-items: center;
@@ -72,8 +77,8 @@
 
 .profilepic-navbar{
   position: fixed;
-  top: -9px;
-  right: 70px;
+  top: -7px;
+  right: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
   align-content: center;
@@ -110,6 +115,11 @@ button:hover{
   
 }
 
+.nav-links-mobile{
+  list-style: none;
+
+}
+
   
   .icon {
     font-size: 20px;
@@ -117,9 +127,6 @@ button:hover{
     color: #c0c0c0;
   }
   
-  .icon:hover {
-    color: white;
-  }
   
   /* Menu Button (Hidden on Desktop) */
   .menu-btn {
@@ -161,15 +168,39 @@ button:hover{
   }
   
   /* Responsive Desin */
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
 
     .navbar{
       height: 2.5rem;
+    transition: 0.3s ease-in-out;
+
       width: 100vw;
     }
 
     .nav-links {
       display: none;
+
+      
+
+    }
+    .icons{
+      position: fixed;
+      right: 5px;
+      top: -2px;
+    transition: 0.3s ease-in-out;
+
+    }
+    .icon-search {
+      margin-top: 5px;
+    transition: 0.3s ease-in-out;
+
+
+    }
+    
+    .icon-notification{
+      margin-top: 5px;
+    transition: 0.3s ease-in-out;
+
     }
     
     .menu-btn {
@@ -181,9 +212,40 @@ button:hover{
       aspect-ratio: 1;
       border-radius: 50%;
       margin-right: 20px;
-      margin-top: 10px;
+      margin-top: 13px;
       margin-left: 10px;
       align-content: center;
+    transition: 0.3s ease-in-out;
+
     }
+    .nav-links {
+      display: none;
+      gap: 10px;
+      list-style: none;
+    transition: 0.3s ease-in-out;
+
+    }
+    .profilepic-navbar{
+      position: fixed;
+      top: -7px;
+      right: 80px;
+    }
+    
   }
   
+
+  @media (max-width: 700px){
+      .nav-links-mobile{
+        display: none;
+        list-style: none;
+
+      }
+      .menu-btn {
+        display: block;
+        margin-top: 10px;
+      }
+      .mobile-menu{
+        font-size: 2rem;
+      }
+
+  }

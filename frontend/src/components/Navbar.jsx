@@ -25,7 +25,7 @@ const Navbar = () => {
           <li><a href="#">Polls</a></li>
 
         </ul>
-        <ul className={`nav-links ${isOpen ? "" : ""}`}>
+        <ul className="nav-links-mobile">
           <li>
             <input type="text" placeholder="Search Your Friend" className="search-input"/>
           </li>
@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="profilepic-navbar"><button className="profile-open" style={{ outline: 'none' }}><img src="../../src/img/profilepic_test2.jpg" alt="" /></button>
         </div>
         <div className="icons">
-          <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
+          <button style={{ outline: 'none' }} className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
@@ -50,13 +50,6 @@ const Navbar = () => {
       {isOpen && (
         <div className="mobile-menu">
           <ul>
-          <li>
-            <input type="text" placeholder="Search Your Friend" className="search-input"/>
-            <button style={{ outline: 'none' }}><FaSearch className="icon" /></button>
-          </li>
-          <li>
-          <FaBell className="icon" />
-          </li>
             <li><a href="#">Home</a></li>
             <li><a href="#">Trending</a></li>
             <li><a href="#">Fill Itch List</a></li>
