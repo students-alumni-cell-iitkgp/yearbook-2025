@@ -38,6 +38,16 @@ function Trending() {
   return (
     <div className="main-body">
       <div className="content">
+        {/* Filter Dropdown */}
+        <div className="filter-container">
+          <label htmlFor="category-filter">Filter by category: </label>
+          <select
+            id="category-filter"
+          >
+            <option value="TimeStamp">TimeStamp</option>
+            <option value="Most Liked">Most Liked</option>
+          </select>
+        </div>
     <div className="trending-container">
       {posts.map((post) => (
         <TrendingPost post={post} />

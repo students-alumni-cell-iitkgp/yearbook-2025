@@ -11,22 +11,22 @@ const ItchListPage = () => {
   };
 
   const items = [
-    "2.2", "ILLU", "HOLI", "TREAT", "BEACH TRIP", 
-    "BONFIRE", "G.C.", "TREK", "HALL DAY", "PROM"
+    "2.2", "ILLU", "HOLI", "TREAT",
+    "BONFIRE", "G.C.", "TREK", "HALL DAY", "PROM","BEACH TRIP", 
   ];
 
   // Dummy images for each item (Replace with actual image paths)
   const images = {
-    "2.2": "../..src/img/itch/22.jpg",
-    "ILLU": "../..src/img/itch/illu.jpg",
-    "HOLI": "../..src/img/itch/holi.jpg",
-    "TREAT": "../..src/img/itch/treat.jpg",
-    "BEACH TRIP": "../..src/img/itch/beach_trip.jpg",
-    "BONFIRE": "../..src/img/itch/bonfire.jpg",
-    "G.C.": "../..src/img/itch/gc.jpg",
-    "TREK": "../..src/img/itch/trek.jpg",
-    "HALL DAY": "../..src/img/itch/hall_day.jpg",
-    "PROM": "../..src/img/itch/prom.jpg",
+    "2.2": "../../src/img/itch/22.jpg",
+    "ILLU": "../../src/img/itch/illu.jpg",
+    "HOLI": "../../src/img/itch/holi.jpg",
+    "TREAT": "../../src/img/itch/treat.jpg",
+    "BONFIRE": "../../src/img/itch/bonfire.jpg",
+    "G.C.": "../../src/img/itch/gc.jpg",
+    "TREK": "../../src/img/itch/trek.jpg",
+    "HALL DAY": "../../src/img/itch/hall_day.jpg",
+    "PROM": "../../src/img/itch/prom.jpg",
+    "BEACH TRIP": "../../src/img/itch/beach_trip.jpg",
   };
 
   return (
@@ -37,7 +37,7 @@ const ItchListPage = () => {
           <div className="itch-list-row">
             <div>
             {items.map((item, index) => (
-              <button
+              <button 
                 key={index}
                 className={`itch-button ${item === selectedItem ? "active" : ""}`}
                 onClick={() => setSelectedItem(item)}

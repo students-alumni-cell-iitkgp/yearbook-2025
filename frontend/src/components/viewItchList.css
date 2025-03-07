@@ -1,0 +1,12 @@
+.filter-container{
+  font-weight: bold;
+  width: 40%;
+  margin: 10px;
+}
+.filter-container select{
+  background-color: #A5D7E8;
+  width: 30%;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+}
