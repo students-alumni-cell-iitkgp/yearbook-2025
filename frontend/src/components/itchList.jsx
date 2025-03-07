@@ -17,16 +17,16 @@ const ItchListPage = () => {
 
   // Dummy images for each item (Replace with actual image paths)
   const images = {
-    "2.2": "images/2.2.jpg",
-    "ILLU": "images/illu.jpg",
-    "HOLI": "images/holi.jpg",
-    "TREAT": "images/treat.jpg",
-    "BEACH TRIP": "images/beach_trip.jpg",
-    "BONFIRE": "images/bonfire.jpg",
-    "G.C.": "images/gc.jpg",
-    "TREK": "images/trek.jpg",
-    "HALL DAY": "images/hall_day.jpg",
-    "PROM": "images/prom.jpg",
+    "2.2": "../..src/img/itch/22.jpg",
+    "ILLU": "../..src/img/itch/illu.jpg",
+    "HOLI": "../..src/img/itch/holi.jpg",
+    "TREAT": "../..src/img/itch/treat.jpg",
+    "BEACH TRIP": "../..src/img/itch/beach_trip.jpg",
+    "BONFIRE": "../..src/img/itch/bonfire.jpg",
+    "G.C.": "../..src/img/itch/gc.jpg",
+    "TREK": "../..src/img/itch/trek.jpg",
+    "HALL DAY": "../..src/img/itch/hall_day.jpg",
+    "PROM": "../..src/img/itch/prom.jpg",
   };
 
   return (
