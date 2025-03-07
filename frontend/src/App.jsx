@@ -33,7 +33,7 @@ const App = () => {
       </Routes>
       {/* <Login></Login> */}
       {/* <Trending></Trending> */}
-      <Polls></Polls>
+      {/* <Polls></Polls> */}
       {/* <ViewItchList></ViewItchList> */}
       {/* <ItchListPage></ItchListPage> */}
       {/* <Profile></Profile> */}
