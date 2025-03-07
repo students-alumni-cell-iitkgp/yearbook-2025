@@ -6,8 +6,9 @@ import Polls from "./components/polls";
 import ViewItchList from "./components/viewItchList";
 import ItchListPage from "./components/itchList";
 import Login from "./components/login";
-// import Profile from "./components/profile";
-
+import Body from "./components/Body"
+import { BrowserRouter, Routes, Route ,NavLink  } from "react-router-dom";
+import './App.css'
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -19,8 +20,17 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar></Navbar>
+    <div className="app">
+        
+       <Navbar></Navbar> 
+      <Routes>
+        <Route path="/profile" Component={Body}></Route>
+        <Route path="/Login" Component={Login}></Route>
+        <Route path="/ViewItchList" Component={ViewItchList}></Route>
+        <Route path="/ItchListPage" Component={ItchListPage}></Route>
+        <Route path="/Polls" Component={Polls}></Route>
+        <Route path="/Trending" Component={Trending}></Route>
+      </Routes>
       {/* <Login></Login> */}
       {/* <Trending></Trending> */}
       <Polls></Polls>

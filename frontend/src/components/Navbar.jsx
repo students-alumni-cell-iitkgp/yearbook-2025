@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaBars, FaTimes, FaSearch, FaBell } from "react-icons/fa";
 import "./navbar.css";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +18,15 @@ const Navbar = () => {
         {/* Desktop Menu */}
 
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Trending</a></li>
-          <li><a href="#">Fill Itch List</a></li>
-          <li><a href="#">View Itch List</a></li>
+          <li><a href="">Home</a></li>
+          <li><a href="/Trending">Trending</a></li>
+          <li><a href="/ItchListPage">Fill Itch List</a></li>
+          <li><a href="/ViewItchList">View Itch List</a></li>
           <li><a href="#">Testimonial</a></li>
-          <li><a href="#">Polls</a></li>
+          <li><a href="/Polls">Polls</a></li>
 
         </ul>
-        <ul className={`nav-links ${isOpen ? "" : ""}`}>
+        <ul className="nav-links-mobile">
           <li>
             <input type="text" placeholder="Search Your Friend" className="search-input"/>
           </li>
@@ -38,10 +39,10 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-        <div className="profilepic-navbar"><button className="profile-open" style={{ outline: 'none' }}><img src="../../src/img/profilepic_test2.jpg" alt="" /></button>
-        </div>
+        <NavLink className="profilepic-navbar" to={'/profile'}><button className="profile-open" style={{ outline: 'none' }}><img src="../../src/img/profilepic_test2.jpg" alt="" /></button>
+        </NavLink>
         <div className="icons">
-          <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
+          <button style={{ outline: 'none' }} className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
@@ -50,19 +51,12 @@ const Navbar = () => {
       {isOpen && (
         <div className="mobile-menu">
           <ul>
-          <li>
-            <input type="text" placeholder="Search Your Friend" className="search-input"/>
-            <button style={{ outline: 'none' }}><FaSearch className="icon" /></button>
-          </li>
-          <li>
-          <FaBell className="icon" />
-          </li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Trending</a></li>
-            <li><a href="#">Fill Itch List</a></li>
-            <li><a href="#">View Itch List</a></li>
-            <li><a href="#">Testimonial</a></li>
-            <li><a href="#">Polls</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="/Trending">Trending</a></li>
+            <li><a href="/ItchListPage">Fill Itch List</a></li>
+            <li><a href="/ViewItchList">View Itch List</a></li>
+            <li><a href="">Testimonial</a></li>
+            <li><a href="/Polls">Polls</a></li>
           </ul>
         </div>
       )}
