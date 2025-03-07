@@ -201,17 +201,11 @@
 
 
 @media (max-width: 800px) {
-  
-  .content{
-    display: flex;
-  }
   .itch-list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-content: center;
     text-align: center;
-    align-items: center;
 
   }
 
