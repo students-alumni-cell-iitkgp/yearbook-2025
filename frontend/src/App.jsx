@@ -6,6 +6,7 @@ import Polls from "./components/polls";
 import ViewItchList from "./components/viewItchList";
 import ItchListPage from "./components/itchList";
 import Login from "./components/login";
+// import Profile from "./components/profile";
 
 
 const App = () => {
@@ -19,13 +20,13 @@ const App = () => {
 
   return (
     <div>
-      {/* <Navbar></Navbar> */}
-      <Login></Login>
+      <Navbar></Navbar>
+      {/* <Login></Login> */}
       {/* <Trending></Trending> */}
-      {/* <Polls></Polls> */}
+      <Polls></Polls>
       {/* <ViewItchList></ViewItchList> */}
       {/* <ItchListPage></ItchListPage> */}
-
+      {/* <Profile></Profile> */}
     </div>
   );
 };
