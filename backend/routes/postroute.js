@@ -1,5 +1,5 @@
 const express = require("express");
-const {upload} = require("../middlewares/photouploadMiddleware");
+const {uploadMiddleware} = require("../middlewares/photouploadMiddleware");
 const {newpostcontroller,likescontroller,commentscontroller,getpostcontroller} = require("../controllers/postcontroller");
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.get("/",(req,res)=>{
     res.send("Hello the application is running good");
 })
 
-router.post("/upload",upload.single("image"),newpostcontroller);
+router.post("/upload",uploadMiddleware,newpostcontroller);
 router.post("/like",likescontroller);
 router.post("/comment",commentscontroller);
 router.get("/getpost",getpostcontroller);
