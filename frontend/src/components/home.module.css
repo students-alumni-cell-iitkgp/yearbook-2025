@@ -223,6 +223,15 @@
   cursor: pointer;
   width: 15%;
 }
+.testimonialButton {
+  width: 25%;
+}
+.newArticleButton{
+  width: 25%;
+}
+.newPostButton{
+  width: 25%;
+}
 
 .Tab1:hover {
     background-color: #A5D7E8;
@@ -245,25 +254,50 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1300px){
   .profileCard {
     flex-direction: column;
     align-items: center;
     text-align: center;
     width: 90%;
   }
-  .intro_table {
-    max-width: 100%;
+  .editButton{
+  border-radius: 50vh;
+  font-size: 12px;
+}
+}
+/* Responsive Design */
+@media (max-width: 868px) {
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     width: 90%;
+    padding: 10px 0px;
+    font-size: small;
+    gap: 0px
   }
   .infoSection {
     text-align: center;
     gap: 10px;
+    width: 100%;
+    margin: 0;
     flex-direction: column;
+    font-size: small;
+  }
+
+  .details h3{
+    font-size: 22px;
+  }
+  .detailsDiv{
+    align-items: left;
+    text-align: left;
+  }
+  .detailsDiv div strong{
+    font-size: 18px;
   }
 
   .imageSection {
-    width: 70%;
     aspect-ratio: 1;
 
   }
@@ -280,6 +314,31 @@
   .editProfile {
     width: 90%;
   }
+  .editButton{
+  background-color: #A5D7E8;
+  border: none;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 50vh;
+  font-size: 12px;
+}
+.tabs button {
+  padding: 8px 5px;
+  font-size: 12px;
+}
+.testimonialButton {
+  width: 60%;
+}
+.newArticleButton{
+  width: 60%;
+}
+.newPostButton{
+  width: 60%;
+}
+
 }
 
 @media (max-width: 480px) {
@@ -287,35 +346,35 @@
     flex-direction: column;
     gap: 5px;
   }
-.container{
-
-  align-items: center;
-  width: auto;
-}
-  .profileCard {
-    width: auto;
+  .infoSection {
+    text-align: center;
+    gap: 10px;
+    margin: 0;
+    flex-direction: column;
+    font-size: small;
   }
-
-  .testimonialButton {
-    width: 80%;
-  }
-
-  .editProfile {
-    width: 90%;
-  }
-  .overlay{
-    width: 100%;
-  }
-  .profileImage{
-    width: 70%;
-    height: auto;
+  .imageSection {
     aspect-ratio: 1;
 
   }
-  .imageSection {
+  .tabs{
+    align-items: center;
+  }
+  .tabs button {
+    width: 40%;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  .profileCard {
+    max-width: 90%;
+    overflow: hidden;
+  }
 
-    width: 70%; /* Adjust size for smaller screens */
-    height: auto;
+  .testimonialButton {
+    width: 70%;
+  }
+  .editProfile {
+    width: 0%;
   }
 
 }
@@ -328,7 +387,7 @@
       text-align: center;
     }
     .profileCard {
-      width: auto;
+      width: 100%;
       align-items: center;
       text-align: center;
       transform: translate(8px);
@@ -341,7 +400,13 @@
 
     }
     .testimonialButton {
-      width: 80%;
+      width: 70%;
+    }
+    .newArticleButton{
+      width: 70%;
+    }
+    .newPostButton{
+      width: 70%;
     }
     .editProfile {
       width: 90%;
