@@ -37,7 +37,7 @@ const App = () => {
       {/* <Polls></Polls> */}
       {/* <ViewItchList></ViewItchList> */}
       {/* <ItchListPage></ItchListPage> */}
-
+      {/* <Profile></Profile> */}
     </div>
   );
 };
