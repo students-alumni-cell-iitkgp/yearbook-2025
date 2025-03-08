@@ -98,6 +98,8 @@
 }
 
 .editButton,
+.newArticleButton,
+.newPostButton,
 .testimonialButton {
   background-color: #A5D7E8;
   border: none;
@@ -107,6 +109,7 @@
   cursor: pointer;
   margin-top: 10px;
   border-radius: 50vh;
+  margin: 10px;
 }
 .closeButton {
     color: white;
@@ -176,6 +179,21 @@
     outline: none;
     box-sizing: border-box;
   }
+
+  .inputCaption{
+
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
  
   .table .RxCross2 {
     float: right;
@@ -210,13 +228,15 @@
     background-color: #A5D7E8;
 }
 .saveButton {
-    background-color: #A5D7E8;
-    border: none;
-    padding: 10px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+  background-color: #A5D7E8;
+  border: none;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 50vh;
+  margin: 10px;
   }
 .noTestimonials {
   margin-top: 20px;
@@ -279,6 +299,7 @@
   .testimonialButton {
     width: 80%;
   }
+
   .editProfile {
     width: 90%;
   }

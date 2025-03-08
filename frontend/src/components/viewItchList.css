@@ -1,12 +1,82 @@
 .filter-container{
   font-weight: bold;
-  width: 40%;
+  width: 90%;
   margin: 10px;
+  display: block;
+  justify-content: space-evenly;
 }
-.filter-container select{
-  background-color: #A5D7E8;
-  width: 30%;
-  color: black;
-  padding: 5px;
+
+.filter-container button{
+  outline: none;
+}
+
+
+.itch-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 10px;
+}
+
+.category-itchlist-name{
+  border: 1px solid #A5D7E8;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+/* Post Card */
+.post {
+  background: #0A2850;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Profile Section */
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: lightgray; /* Placeholder for profile image */
+}
+
+.profile-pic img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: lightgray; /* Placeholder for profile image */
+}
+
+
+.profile-pic.small {
+  width: 30px;
+  height: 30px;
+}
+
+/* Image Placeholder */
+.post-image {
+  height: 100%;
+
+  background: rgb(225, 216, 216);
   border-radius: 10px;
+  margin-top: 10px;
+  aspect-ratio: 1;
+}
+
+.post-image img {
+  height: 100%;
+  border-radius: 10px;
+
+  aspect-ratio: 1;
+}
+
+.active-category{
+  background-color: #A5D7E8;
+  color: #0A2850;
 }

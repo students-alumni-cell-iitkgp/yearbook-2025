@@ -1,25 +1,53 @@
 import React, { useState, useRef } from "react";
 import { RxCross2 } from "react-icons/rx";
-import styles from "./Body.module.css";
+import styles from "./home.module.css";
 import photo from "../img/Rupesh.1.jpg";
 import Navbar from "./Navbar";
 import "./trending.css";
 import { FcOldTimeCamera } from "react-icons/fc";
 
-const Body = () => {
+const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleNewPost, setIsVisibleNewPost] = useState(false);
+  const [isVisibleNewArticle, setIsVisibleNewArticle] = useState(false);
   const [blur, setBlur] = useState(0);
   const tableRef = useRef(null);
   const inputFile = useRef(null);
 
   const editProfile = () => {
     setIsVisible(true);
+    setIsVisibleNewArticle(false);
+    setIsVisibleNewPost(false);
     setBlur(5); // Add blur effect
     document.body.style.overflow = "hidden";
   };
 
+  const newPost = () => {
+    setIsVisibleNewPost(true);
+    setIsVisibleNewArticle(false);
+    setIsVisible(false);
+    setBlur(5); // Add blur effect
+    document.body.style.overflow = "hidden";
+  };
+  const newArticle = () => {
+    setIsVisibleNewArticle(true);
+    setIsVisible(false);
+    setIsVisibleNewPost(false);
+    setBlur(5); // Add blur effect
+    document.body.style.overflow = "hidden";
+  };
   const closeEditProfile = () => {
     setIsVisible(false);
+    setBlur(0); // Remove blur effect
+    document.body.style.overflow = "auto";
+  };
+  const closeNewPost = () => {
+    setIsVisibleNewPost(false);
+    setBlur(0); // Remove blur effect
+    document.body.style.overflow = "auto";
+  };
+  const closeNewArticle = () => {
+    setIsVisibleNewArticle(false);
     setBlur(0); // Remove blur effect
     document.body.style.overflow = "auto";
   };
@@ -121,8 +149,14 @@ const Body = () => {
             </div>
           </div>
         </div>
-
+              
         <button className={styles.testimonialButton}>Write Testimonials</button>
+        <button className={styles.newArticleButton} onClick={newPost}>
+                New Post
+          </button>
+          <button className={styles.newPostButton} onClick={newArticle}>
+                New Article
+              </button>
 
         <p className={styles.testimonialText}>
           Here's what your friends have written about you! Your testimonials are
@@ -199,10 +233,81 @@ const Body = () => {
           </div>
         </div>
       )}
+
+{isVisibleNewPost && (
+        <div className={styles.overlay}>
+          <div className={styles.editProfile}>
+            <RxCross2
+              className={styles.closeButton}
+              size={26}
+              onClick={closeNewPost}
+            />
+            <h3 style={{ color: "white" }}>Upload A New Post</h3>
+            <table
+              className={styles.table}
+            //   style={{ backgroundColor: "#1b2a4e" }}
+            >
+              <tr>
+                <td>Select Picture:</td>
+                <td>
+                  <label htmlFor="pic" className={styles.fileLabel}>
+                    <FcOldTimeCamera size={22} style={{translate:'0px 4px'}}></FcOldTimeCamera> Browse File
+                  </label>
+                  <input type="file" id="pic" className={styles.hiddenInput} />
+                </td>
+              </tr>
+              <tr>
+                <td>Caption:</td>
+                <td>
+                  <input type="text" placeholder="Upload your Caption Here." className={styles.inputCapti}/>
+                </td>
+              </tr>
+            </table>
+            <input
+              type="button"
+              value="Upload Post"
+              onClick={closeEditProfile}
+              className={styles.saveButton}
+            />
+          </div>
+        </div>
+      )}
+
+
+{isVisibleNewArticle && (
+        <div className={styles.overlay}>
+          <div className={styles.editProfile}>
+            <RxCross2
+              className={styles.closeButton}
+              size={26}
+              onClick={closeNewArticle}
+            />
+            <h3 style={{ color: "white" }}>Upload A New Article</h3>
+            <table
+              className={styles.table}
+            //   style={{ backgroundColor: "#1b2a4e" }}
+            >
+              <tr>
+                <td>Write Your Article Here:</td>
+                <td>
+                  <input type="text" placeholder="Write your Article Here." className={styles.inputCapti}/>
+                </td>
+              </tr>
+            </table>
+            <input
+              type="button"
+              value="Upload Article"
+              onClick={closeEditProfile}
+              className={styles.saveButton}
+            />
+          </div>
+        </div>
+      )}
+
       </div>
       </div>
     </>
   );
 };
 
-export default Body;
+export default Home;

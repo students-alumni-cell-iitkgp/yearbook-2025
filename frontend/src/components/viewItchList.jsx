@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./trending.css";
 import "./viewItchList.css";
+import Navbar from "./Navbar";
 
 function ViewItchList() {
   const [selectedCategory, setSelectedCategory] = useState("all"); // Default to 'all'
@@ -19,12 +20,15 @@ function ViewItchList() {
     {
       id: 3,
       author: { name: "Alice Smith" },
+
+
+
       category: "illu",
     },
     {
       id: 4,
       author: { name: "Michael Brown" },
-      category: "treak",
+      category: "22",
     },
     {
       id: 5,
@@ -40,32 +44,29 @@ function ViewItchList() {
       : posts.filter((post) => post.category === selectedCategory);
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="main-body">
       <div className="content">
         
         {/* Filter Dropdown */}
         <div className="filter-container">
-          <label htmlFor="category-filter">Filter by category: </label>
-          <select
-            id="category-filter"
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            value={selectedCategory}
-          >
-            <option value="all">View All</option>
-            <option value="22">2.2</option>
-            <option value="illu">ILLU</option>
-            <option value="holi">HOLI</option>
-            <option value="treat">TREAT</option>
-            <option value="bonfire">BONFIRE</option>
-            <option value="gc">G.C.</option>
-            <option value="trek">TREK</option>
-            <option value="hallday">HALL DAY</option>
-            <option value="prom">PROM</option>
-            <option value="beach">BEACH TRIP</option>
-          </select>
+          <label htmlFor="category-filter"></label>
+          <button onClick={(e) => setSelectedCategory("all")} value="all"><div className={`category-itchlist-name ${selectedCategory=="all" ? "active-category" : ""}`}>ALL</div></button>
+          <button onClick={(e) => setSelectedCategory("22")} value="22"><div className={`category-itchlist-name ${selectedCategory=="22" ? "active-category" : ""}`}>2.2</div></button>
+          <button onClick={(e) => setSelectedCategory("illu")} value="illu"><div className={`category-itchlist-name ${selectedCategory=="illu" ? "active-category" : ""}`}>ILLU</div></button>
+          <button onClick={(e) => setSelectedCategory("holi")} value="holi"><div className={`category-itchlist-name ${selectedCategory=="holi" ? "active-category" : ""}`}>HOLI</div></button>
+          <button onClick={(e) => setSelectedCategory("treat")} value="treat"><div className={`category-itchlist-name ${selectedCategory=="treat" ? "active-category" : ""}`}>TREAT</div></button>
+          <button onClick={(e) => setSelectedCategory("bonfire")} value="bonfire">
+            <div className={`category-itchlist-name ${selectedCategory=="bonfire" ? "active-category" : ""}`}>BONFIRE</div></button>
+          <button onClick={(e) => setSelectedCategory("gc")} value="gc"><div className={`category-itchlist-name ${selectedCategory=="gc" ? "active-category" : ""}`}>G.C.</div></button>
+          <button onClick={(e) => setSelectedCategory("trek")} value="trek"><div className={`category-itchlist-name ${selectedCategory=="trek" ? "active-category" : ""}`}>TREK</div></button>
+          <button onClick={(e) => setSelectedCategory("hall_day")} value="hall_day"><div className={`category-itchlist-name ${selectedCategory=="hall_day" ? "active-category" : ""}`}>HALL DAY</div></button>
+          <button onClick={(e) => setSelectedCategory("prom")} value="prom"><div className={`category-itchlist-name ${selectedCategory=="prom" ? "active-category" : ""}`}>PROM</div></button>
+          <button onClick={(e) => setSelectedCategory("beach_trip")} value="beach_trip"><div className={`category-itchlist-name ${selectedCategory=="beach_trip" ? "active-category" : ""}`}>BEACH TRIP</div></button>
         </div>
 
-        <div className="trending-container">
+        <div className="itch-container">
           {filteredPosts.map((post) => (
             <div className="post" key={post.id}>
               <div className="post-header">
@@ -86,6 +87,7 @@ function ViewItchList() {
 
       </div>
     </div>
+    </>
   );
 }
 

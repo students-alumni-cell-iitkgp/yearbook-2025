@@ -8,6 +8,8 @@ import { CiMail } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { BsBuilding } from "react-icons/bs";
 import photo1 from "../photos/basic-rgb-265998273.webp";
+import Navbar from "./Navbar";
+
 const Profile = () => {
   const superContainerRef = useRef(null);
   const containerRef = useRef(null);

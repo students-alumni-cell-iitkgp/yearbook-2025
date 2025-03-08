@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./trending.css"; // Ensure correct CSS file import
 import TrendingPost from "./trendingpost";
+import Navbar from "./Navbar";
+
 
 function Trending() {
   const [posts] = useState([
@@ -36,6 +38,8 @@ function Trending() {
   ]);
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="main-body">
       <div className="content">
         {/* Filter Dropdown */}
@@ -55,6 +59,7 @@ function Trending() {
     </div>
     </div>
     </div>
+    </>
   );
 }
 

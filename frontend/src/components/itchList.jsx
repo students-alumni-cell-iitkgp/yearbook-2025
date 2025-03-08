@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./itchList.css";
 import "./trending.css";
+import Navbar from "./Navbar";
 
 const ItchListPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -30,6 +31,8 @@ const ItchListPage = () => {
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="main-body">
       <div className="content">
         <div className="itch-list-container">
@@ -71,6 +74,7 @@ const ItchListPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
