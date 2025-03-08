@@ -387,7 +387,15 @@
       text-align: center;
     }
     .profileCard {
-      width: 100%;
+      width: 100%;.testimonialButton {
+      width: 80%;
+    }
+    .newArticleButton{
+      width: 80%;
+    }
+    .newPostButton{
+      width: 80%;
+    }
       align-items: center;
       text-align: center;
       transform: translate(8px);
