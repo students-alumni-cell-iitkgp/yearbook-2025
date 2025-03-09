@@ -18,7 +18,7 @@ function LoginPage() {
       <label htmlFor="" className="roll-label label-login">Enter Your Roll Number</label>
     <input type="text" placeholder="21DD10090" className="login-roll"/>
       <label htmlFor="" className="dob-label label-login">Enter Your Date of Birth</label>
-    <input type="text" placeholder="22122002" className="login-dob"/>
+    <input type="date" className="login-dob"/>
       <button class="btn-login btn" type="submit">LOGIN</button>
       <small class="btn-test btn">
         <a href="">Write Testinomials</a>

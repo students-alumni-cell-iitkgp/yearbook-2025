@@ -2,12 +2,14 @@ import { useState } from "react";
 import { MdAutoGraph } from "react-icons/md";
 import "./polls.css";
 import "./trending.css";
+import Navbar from "./Navbar";
 
 function Polls() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+    <Navbar></Navbar>
     <div className="main-body">
       <div className="content">
         <h3 className="header">POLLS</h3>

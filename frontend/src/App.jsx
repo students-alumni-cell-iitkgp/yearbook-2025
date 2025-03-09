@@ -9,6 +9,8 @@ import Login from "./components/login";
 import Body from "./components/Body"
 import { BrowserRouter, Routes, Route ,NavLink  } from "react-router-dom";
 import './App.css'
+import LoginPage from "./components/login";
+import Home from "./components/home";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -21,15 +23,14 @@ const App = () => {
 
   return (
     <div className="app">
-        
-       <Navbar></Navbar> 
       <Routes>
+        <Route path="/" Component={LoginPage}></Route>
+        <Route path="/home" Component={Home}></Route>
         <Route path="/profile" Component={Body}></Route>
-        <Route path="/Login" Component={Login}></Route>
         <Route path="/ViewItchList" Component={ViewItchList}></Route>
         <Route path="/ItchListPage" Component={ItchListPage}></Route>
         <Route path="/Polls" Component={Polls}></Route>
-        <Route path="/Trending" Component={Trending}></Route>
+        <Route path="/trending" Component={Trending}></Route>
       </Routes>
       {/* <Login></Login> */}
       {/* <Trending></Trending> */}

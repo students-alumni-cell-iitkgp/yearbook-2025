@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./itchList.css";
 import "./trending.css";
+import Navbar from "./Navbar";
 
 const ItchListPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -29,6 +30,7 @@ const ItchListPage = () => {
     setSelectedFile(event.target.files[0]);
   };
 
+
   const handleUpload = async () => {
     if (!selectedFile) return alert("Please select a file.");
 
@@ -55,6 +57,24 @@ const ItchListPage = () => {
     } finally {
       setUploading(false); // Hide loading state
     }
+
+  const items = [
+    "2.2", "ILLU", "HOLI", "TREAT",
+    "BONFIRE", "G.C.", "TREK", "HALL DAY", "PROM","BEACH TRIP", 
+  ];
+
+  // Dummy images for each item (Replace with actual image paths)
+  const images = {
+    "2.2": "../../src/img/itch/22.jpg",
+    "ILLU": "../../src/img/itch/illu.jpg",
+    "HOLI": "../../src/img/itch/holi.jpg",
+    "TREAT": "../../src/img/itch/treat.jpg",
+    "BONFIRE": "../../src/img/itch/bonfire.jpg",
+    "G.C.": "../../src/img/itch/gc.jpg",
+    "TREK": "../../src/img/itch/trek.jpg",
+    "HALL DAY": "../../src/img/itch/hall_day.jpg",
+    "PROM": "../../src/img/itch/prom.jpg",
+    "BEACH TRIP": "../../src/img/itch/beach_trip.jpg",
   };
 
   const items = [
@@ -71,6 +91,8 @@ const ItchListPage = () => {
   ];
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="main-body">
       <div className="content">
         <div className="itch-list-container">
@@ -128,6 +150,7 @@ const ItchListPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

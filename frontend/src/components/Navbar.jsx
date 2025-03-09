@@ -18,7 +18,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
 
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <li><a href="">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="/Trending">Trending</a></li>
           <li><a href="/ItchListPage">Fill Itch List</a></li>
           <li><a href="/ViewItchList">View Itch List</a></li>
@@ -51,7 +51,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="mobile-menu">
           <ul>
-            <li><a href="">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li><a href="/Trending">Trending</a></li>
             <li><a href="/ItchListPage">Fill Itch List</a></li>
             <li><a href="/ViewItchList">View Itch List</a></li>

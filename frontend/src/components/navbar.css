@@ -74,20 +74,20 @@
     font-size: 16px;
     transition: 0.3s;
   }
-
-.profilepic-navbar{
-  position: fixed;
-  top: -7px;
-  right: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  align-content: center;
-}
-.profilepic-navbar img{
-  width: 40px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
+  
+  .profilepic-navbar{
+    position: fixed;
+    top: -7px;
+    right: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    align-content: center;
+  }
+  .profilepic-navbar img{
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
   
   .nav-links li a:hover {
     color: white;
@@ -110,11 +110,16 @@
     top: 20px;
     right: 200px;
   }
-button:hover{
-  outline: none;
+  button:hover{
+    outline: none;
+    
+  }
+  .navbar-active{
+    color: #A5D7E8;
+    border-bottom: 3px solid #A5D7E8;
+    padding: 15px;
+  }
   
-}
-
 .nav-links-mobile{
   list-style: none;
 
