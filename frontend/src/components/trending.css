@@ -12,12 +12,20 @@
   margin-top: 50px;
 }
 
+.category-filter-trending{
+  width: 150px;
+  color: #0A2850;
+  padding: 0px 10px;
+  border-radius: 5px;
+  background-color: #A5D7E8;
+}
+
 .content{
   background-color: #19376D;
   border-radius: 10px 10px 0px 0px;
   position: relative;
   bottom: 0px;
-  width: 80%;
+  width: 80vw;
   z-index: 2;
   min-height: 100vh;
 
@@ -77,11 +85,11 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .pagination button {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: #0A2850;
   padding: 8px 12px;
   margin: 0 5px;
   cursor: pointer;
@@ -90,13 +98,12 @@
 }
 
 .pagination button:hover {
-  background-color: #ddd;
+  background-color: #103e79;
 }
 
 .pagination .active {
-  background-color: #007bff;
-  color: white;
-  border: 1px solid #0056b3;
+  background-color: #A5D7E8;
+  color: #0A2850;
 }
 
 
@@ -202,7 +209,7 @@ button.liked {
 }
 
 
-@media (max-width: 768px){
+@media (max-width: 868px){
   .main-body{
     width: 100vw;
   }

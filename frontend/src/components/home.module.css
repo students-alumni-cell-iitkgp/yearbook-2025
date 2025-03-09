@@ -338,6 +338,12 @@
 .newPostButton{
   width: 60%;
 }
+.overlay{
+  width: 100%;
+}
+.editProfile {
+  width: 90%;
+}
 
 }
 

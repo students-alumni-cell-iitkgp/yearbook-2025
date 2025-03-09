@@ -118,6 +118,9 @@ const Body = () => {
               <button className={styles.editButton} onClick={editProfile}>
                 Edit Profile
               </button>
+              <button className={styles.editButton} >
+                Logout
+              </button>
             </div>
           </div>
         </div>

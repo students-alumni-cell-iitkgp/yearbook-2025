@@ -57,10 +57,18 @@ const ItchListPage = () => {
     } finally {
       setUploading(false); // Hide loading state
     }
-
+  }
   const items = [
-    "2.2", "ILLU", "HOLI", "TREAT",
-    "BONFIRE", "G.C.", "TREK", "HALL DAY", "PROM","BEACH TRIP", 
+    "2.2",
+    "ILLU",
+    "HOLI", 
+    "TREAT",
+    "BEACH TRIP", 
+    "BONFIRE", 
+    "G.C.", 
+    "TREK", 
+    "HALL DAY", 
+    "PROM",
   ];
 
   // Dummy images for each item (Replace with actual image paths)
@@ -76,19 +84,6 @@ const ItchListPage = () => {
     "PROM": "../../src/img/itch/prom.jpg",
     "BEACH TRIP": "../../src/img/itch/beach_trip.jpg",
   };
-
-  const items = [
-    "2.2",
-    "ILLU",
-    "HOLI",
-    "TREAT",
-    "BEACH TRIP",
-    "BONFIRE",
-    "G.C.",
-    "TREK",
-    "HALL DAY",
-    "PROM",
-  ];
 
   return (
     <>
@@ -151,7 +146,7 @@ const ItchListPage = () => {
       </div>
     </div>
     </>
-  );
+  )
 };
 
 export default ItchListPage;

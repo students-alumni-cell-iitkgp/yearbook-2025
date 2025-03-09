@@ -1,0 +1,150 @@
+/* Profile Grid Styles */
+.profile-container {
+  padding: 10px;
+  background-color: #0f172a;
+  min-height: 100vh;
+}
+
+.profile-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+
+.profile-card {
+  margin: auto;
+  margin-top: 10px;
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0A2850;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #A5D7E8;
+  color: white;
+  text-align: center;
+
+}
+
+.profile-pic-admin {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #A5D7E8;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.profile-pic-admin img{
+  width: 100%;
+  background-color: #A5D7E8;
+  border-radius: 8px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 15px;
+}
+.info-admin-page a{
+  color: #A5D7E8;
+}
+.info-admin-page{
+  text-align: left;
+  display: block;
+  height: 100%;
+  align-items: left;
+  justify-content: left;
+}
+
+.info {
+  font-size: 14px;
+}
+
+.button-group {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.write {
+  background-color: blue;
+  color: white;
+}
+
+.view {
+  background-color: gray;
+  color: white;
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.page-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: gray;
+  color: #0A2850;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  color: white;
+}
+
+
+@media (max-width: 1300px){
+  .profile-card {
+    margin: auto;
+    margin-top: 10px;
+    width: 24%;
+
+  
+  }
+  
+  
+}
+@media (max-width: 600px){
+  .profile-card {
+    margin: auto;
+    margin-top: 10px;
+    width: 60%;
+
+  
+  }
+  
+  
+}
+@media (max-width: 400px){
+  .profile-card {
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+
+  
+  }
+  
+  
+}

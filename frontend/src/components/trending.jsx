@@ -10,10 +10,12 @@ function Trending() {
   const posts = Array.from({ length: 100 }, (_, i) => ({
     id: i + 1,
     author: { name: `User ${i + 1}` },
-    caption: `This is post number ${i + 1}.`,
+    caption: `This is post number lorem 
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius deleniti facilis illum dicta obcaecati vel dignissimos, amet similique esse temporibus a. Doloremque vero pariatur dignissimos reprehenderit nobis quasi ipsa dolorum!
+    
+    ${i + 1}.`,
     comments: [],
   }));
-
   // Calculate the total number of pages
   const totalPages = Math.ceil(posts.length / postsPerPage);
   
@@ -33,7 +35,7 @@ function Trending() {
           {/* Filter Dropdown */}
           <div className="filter-container">
             <label htmlFor="category-filter">Filter by category: </label>
-            <select id="category-filter">
+            <select className="category-filter-trending" id="category-filter">
               <option value="TimeStamp">TimeStamp</option>
               <option value="Most Liked">Most Liked</option>
             </select>
