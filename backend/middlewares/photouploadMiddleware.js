@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     const filename = `${req.userName || "unknown"}-${Date.now()}${path.extname(
       file.originalname
     )}`;
-    req.photoUrl = `/uploads/${req.uploadType || "default"}/${filename}`; // Save 
+    req.photoUrl = `/uploads/${req.uploadType || "default"}/${filename}`; // Set photo_url
     cb(null, filename);
   },
 });
@@ -37,7 +37,7 @@ const upload = multer({
   },
 });
 
-// Middleware to extract text fields *before* multer processes files
+// Middleware to extract text fields **before** multer processes files
 const extractFormData = (req, res, next) => {
   console.log(req.body);
   req.uploadType = req.body.type || "default";
@@ -45,7 +45,7 @@ const extractFormData = (req, res, next) => {
   next();
 };
 
-// Middleware to set photo_url in req.body
+// Middleware to set `photo_url` in `req.body`
 const setPhotoUrl = (req, res, next) => {
   if (req.file) {
     req.body.photo_url = req.photoUrl; // Add photo_url to req.body

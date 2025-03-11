@@ -150,7 +150,7 @@ const Home = () => {
           </div>
         </div>
               
-        <button className={styles.testimonialButton}>Write Testimonials</button>
+        <button className={styles.testimonialButton}>Write Testimonials </button>
         <button className={styles.newArticleButton} onClick={newPost}>
                 New Post
           </button>

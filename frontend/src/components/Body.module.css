@@ -108,6 +108,7 @@
   cursor: pointer;
   margin-top: 10px;
   border-radius: 50vh;
+  margin: 10px;
 }
 .closeButton {
     color: white;
@@ -278,26 +279,29 @@
     text-align: center;
     width: 100%;
   }
-
+  
   .profileImage {
     max-width: 150px;
     height: auto;
   }
+  .editButton,
+  .testimonialButton {
+    background-color: #A5D7E8;
+    border: none;
+    padding: 10px 15px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 50vh;
+    font-size: 12px;
+  }
+  .overlay{
+    width: 100%;
+  }
   .editProfile {
     width: 90%;
   }
-  .editButton,
-.testimonialButton {
-  background-color: #A5D7E8;
-  border: none;
-  padding: 10px 15px;
-  color: rgb(0, 0, 0);
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  border-radius: 50vh;
-  font-size: 12px;
-}
 .tabs button {
   padding: 8px 5px;
   font-size: 12px;
@@ -337,10 +341,6 @@
   .testimonialButton {
     width: 80%;
   }
-  .editProfile {
-    width: 90%;
-  }
-
 }
 @media (max-width: 375px) {
     .tabs {
@@ -365,12 +365,6 @@
     }
     .testimonialButton {
       width: 80%;
-    }
-    .editProfile {
-      width: 90%;
-    }
-    .overlay{
-      width: 100%;
     }
   
   }

@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route ,NavLink  } from "react-router-dom";
 import './App.css'
 import LoginPage from "./components/login";
 import Home from "./components/home";
+import AdminPage from "./components/admin";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/ItchListPage" Component={ItchListPage}></Route>
         <Route path="/Polls" Component={Polls}></Route>
         <Route path="/trending" Component={Trending}></Route>
+        <Route path="/admin" Component={AdminPage}></Route>
       </Routes>
       {/* <Login></Login> */}
       {/* <Trending></Trending> */}

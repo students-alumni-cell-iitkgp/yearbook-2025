@@ -1,43 +1,40 @@
-const itchlist = require('../models/itchlistmodel');
+const {Itchlist} = require("../models/itchlistmodel");
 
-const newitchcontroller = async (req,res)=>{
+const newitchcontroller = async (req, res) => {
     try {
-        const {user_id,user_name,photo_url,type} = req.body;
-        const date = Date.now();
-        const newitch = new itchlist({
+        console.log(req.body)
+        const { user_id, user_name, photo_url,type } = req.body;
+
+        if (!photo_url) return res.status(400).json({ message: "File upload failed" });
+
+        const newitch = new Itchlist({
             user_id,
             user_name,
             photo_url,
             type,
-            date
+            date: Date.now()
         });
 
         await newitch.save();
-
-        res.status(200).json({message:"Post created successfully"});
+        res.status(200).json({ message: "Post created successfully", photo_url });
 
     } catch (error) {
-        res.status(500).json({message:"Server error"});
+        console.log(error)
+        res.status(500).json({ message: "Server error", error: error.message });
     }
-}
+};
 
-const getitchcontroller = async (req,res)=>{
+const getitchcontroller = async (req, res) => {
     try {
-        const type = req.query
+        const { type } = req.query;
 
-        if(type==="all"){
-            const itches = await itchlist.find();
-            res.status(200).json(itches);
-        }
+        const itches = type === "all" ? await itchlist.find() : await itchlist.find({ type });
 
-        else{
-            const itches = await itchlist.find({type});
-            res.status(200).json(itches);
-        }
+        res.status(200).json(itches);
 
     } catch (error) {
-        res.status(500).json({message:"Server error"});
+        res.status(500).json({ message: "Server error" });
     }
-}
+};
 
-module.exports = {newitchcontroller,getitchcontroller};
+module.exports = { newitchcontroller, getitchcontroller };
