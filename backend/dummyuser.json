@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Amit Sharma",
+        "email": "amit.sharma@example.com",
+        "course": "Computer Science",
+        "dob": "2002-05-14T00:00:00.000Z",
+        "email_insti": "amit.sharma@iitkgp.ac.in",
+        "HOR": "Kolkata",
+        "department": "CSE",
+        "phone": 9876543210,
+        "caption": "Dream big, work hard!",
+        "pro_pic": "amit_profile.jpg",
+        "rollno": "21CS1001",
+        "testimonials": ["Excellent student", "Hardworking and dedicated"]
+    },
+    {
+        "name": "Riya Sen",
+        "email": "riya.sen@example.com",
+        "course": "Electrical Engineering",
+        "dob": "2001-09-23T00:00:00.000Z",
+        "email_insti": "riya.sen@iitkgp.ac.in",
+        "HOR": "Delhi",
+        "department": "EE",
+        "phone": 9876504321,
+        "caption": "Stay positive, work hard, make it happen!",
+        "pro_pic": "riya_profile.jpg",
+        "rollno": "21EE1023",
+        "testimonials": ["Very talented", "A great leader"]
+    },
+    {
+        "name": "Suresh Yadav",
+        "email": "suresh.yadav@example.com",
+        "course": "Mechanical Engineering",
+        "dob": "2003-02-11T00:00:00.000Z",
+        "email_insti": "suresh.yadav@iitkgp.ac.in",
+        "HOR": "Bangalore",
+        "department": "ME",
+        "phone": 9876123456,
+        "caption": "Engineering is my passion!",
+        "pro_pic": "suresh_profile.jpg",
+        "rollno": "21ME1054",
+        "testimonials": ["Dedicated student", "Innovative thinker"]
+    },
+    {
+        "name": "Pooja Verma",
+        "email": "pooja.verma@example.com",
+        "course": "Civil Engineering",
+        "dob": "2000-12-05T00:00:00.000Z",
+        "email_insti": "pooja.verma@iitkgp.ac.in",
+        "HOR": "Mumbai",
+        "department": "CE",
+        "phone": 9876234567,
+        "caption": "Building the future!",
+        "pro_pic": "pooja_profile.jpg",
+        "rollno": "21CE1078",
+        "testimonials": ["Highly skilled", "Excellent in academics"]
+    }
+]

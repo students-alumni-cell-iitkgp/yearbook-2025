@@ -1,14 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 import styles from "./Body.module.css";
 import photo from "../img/Rupesh.1.jpg";
 import Navbar from "./Navbar";
 import "./trending.css";
 import { FcOldTimeCamera } from "react-icons/fc";
+import axios from "axios";
 
 const Body = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [blur, setBlur] = useState(0);
+  const [profile, setProfile] = useState({
+    name: "",
+    caption: "Your Caption Here!",
+    rollno: "",
+    HOR: "",
+    email: "",
+    department: "",
+  });
   const tableRef = useRef(null);
   const inputFile = useRef(null);
 
@@ -23,6 +32,42 @@ const Body = () => {
     setBlur(0); // Remove blur effect
     document.body.style.overflow = "auto";
   };
+
+  const handlelogout = () => {
+    window.localStorage.removeItem("token");
+    window.location.href = "/";
+  }
+
+  const handleprofile = async() => {
+    try{
+      const token = window.localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          },
+          }
+
+      const response = await axios.get("http://localhost:5000/api/users/getuser",config);
+
+      // console.log(response.data);
+
+      setProfile(response.data);
+
+     
+    }
+    catch (error) {
+      console.error("Error fetching posts:", error);
+      alert("Invalid Credentials");
+      
+    }
+  }
+
+  useEffect(() => {
+    handleprofile();
+  }
+  , []);
+
+
   return (
     <>
     <Navbar></Navbar>
@@ -39,8 +84,8 @@ const Body = () => {
           </div>
           <div className={styles.infoSection}>
             <div className={styles.nameCaption}>
-              <h2>Nirmal Patidar</h2>
-              <p>Your Caption Here!</p>
+              <h2>{profile.name}</h2>
+              <p>{profile.caption}</p>
             </div>
             <div className={styles.details}>
               <h3>Introduction:</h3>
@@ -58,7 +103,7 @@ const Body = () => {
 </defs>
 </svg>
  Roll No:</strong> 
-                <strong className={styles.detailStrong}>23EE10058</strong> 
+                <strong className={styles.detailStrong}> {profile.rollno}</strong> 
                 </div>
                 <div>
                 <strong><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +117,7 @@ const Body = () => {
 </defs>
 </svg>
  Hall of Residence:</strong> 
-                <strong className={styles.detailStrong}>RadhaKrishnan</strong> 
+                <strong className={styles.detailStrong}> {profile.HOR}</strong> 
                 </div>
                 <div>
                 <strong><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +131,7 @@ const Body = () => {
 </defs>
 </svg>
  Email:</strong> 
-                <strong className={styles.detailStrong}>rsahoobnd@gmail.com</strong> 
+                <strong className={styles.detailStrong}> {profile.email}</strong> 
                 </div>
                 <div>
                 <strong><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +145,7 @@ const Body = () => {
 </defs>
 </svg>
   Department:</strong>
-                <strong className={styles.detailStrong}>Electrical Engg.</strong> 
+                <strong className={styles.detailStrong}>{profile.department}</strong> 
                 </div>
             </div>
               {/* <p>
@@ -118,7 +163,7 @@ const Body = () => {
               <button className={styles.editButton} onClick={editProfile}>
                 Edit Profile
               </button>
-              <button className={styles.editButton} >
+              <button className={styles.editButton} onClick={handlelogout} >
                 Logout
               </button>
             </div>

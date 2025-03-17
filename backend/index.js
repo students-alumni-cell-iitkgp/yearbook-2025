@@ -4,7 +4,7 @@ require("dotenv").config();
 const connectDB = require("./db/connection");
 
 const userRoutes = require("./routes/userroute");
-const postRoutes = require("./routes/postRoute");
+const postRoutes = require("./routes/postroute");
 const itchlistRoutes = require("./routes/itchlistroute");
 
 const app = express();

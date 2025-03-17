@@ -9,10 +9,12 @@ const ItchListPage = () => {
   const [selectedItem, setSelectedItem] = useState("2.2"); // Default selection
   const [itches, setItches] = useState([]); // Store fetched posts
   const [uploading, setUploading] = useState(false); // Track upload status
+  const [user, setUser] = useState({});
 
   // Fetch posts on component mount and when selectedItem changes
   useEffect(() => {
     fetchItches();
+    handleuser();
   }, [selectedItem]);
 
   const fetchItches = async () => {
@@ -26,6 +28,30 @@ const ItchListPage = () => {
     }
   };
 
+  const handleuser= async() => {
+      try{
+        const token = window.localStorage.getItem("token");
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            },
+            }
+  
+        const response = await axios.get("http://localhost:5000/api/users/getuser",config);
+  
+        // console.log(response.data);
+  
+        setUser(response.data);
+  
+       
+      }
+      catch (error) {
+        console.error("Error fetching posts:", error);
+        alert("Invalid Credentials");
+        
+      }
+}
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -38,8 +64,8 @@ const ItchListPage = () => {
 
     const formData = new FormData();
     formData.append("image", selectedFile); // Ensure it matches backend field
-    formData.append("user_id", "12345");
-    formData.append("user_name", "John Doe");
+    formData.append("user_id", user._id);
+    formData.append("rollno", user.rollno);
     formData.append("type", selectedItem);
 
     try {
