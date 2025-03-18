@@ -12,6 +12,8 @@ import './App.css'
 import LoginPage from "./components/login";
 import Home from "./components/home";
 import AdminPage from "./components/admin";
+import TestimonialGiven from "./components/givenTestimonial";
+
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -33,6 +35,7 @@ const App = () => {
         <Route path="/Polls" Component={Polls}></Route>
         <Route path="/trending" Component={Trending}></Route>
         <Route path="/admin" Component={AdminPage}></Route>
+        <Route path="/testimonialgiven" Component={TestimonialGiven}></Route>
       </Routes>
       {/* <Login></Login> */}
       {/* <Trending></Trending> */}
