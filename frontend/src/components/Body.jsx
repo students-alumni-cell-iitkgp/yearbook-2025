@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import "./trending.css";
 import { FcOldTimeCamera } from "react-icons/fc";
 import axios from "axios";
+import "./givenTestimonial.css"
 
 const Body = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,6 +33,31 @@ const Body = () => {
     setBlur(5); // Add blur effect
     document.body.style.overflow = "hidden";
   };
+  const closeviewTestimonials = () => {
+    setIsVisible(false);
+    setBlur(0); // Remove blur effect
+    document.body.style.overflow = "auto";
+  };
+    const [testimonials] = useState([
+      {
+        id: 1,
+        name: "Alice Johnson",
+        profilePic: "../../src/img/profilepic_test2.jpg",
+        testimonial: "This platform has changed my life for the better! Highly recommended."
+      },
+      {
+        id: 2,
+        name: "Bob Smith",
+        profilePic: "../../src/img/profilepic_test2.jpg",
+        testimonial: "An amazing experience! The best service I have ever used."
+      },
+      {
+        id: 3,
+        name: "Charlie Brown",
+        profilePic: "../../src/img/profilepic_test2.jpg",
+        testimonial: "User-friendly and efficient. I am extremely satisfied."
+      }
+    ]);
 
   const closeEditProfile = () => {
     setIsVisible(false);
@@ -43,6 +69,7 @@ const Body = () => {
     window.localStorage.removeItem("token");
     window.location.href = "/";
   }
+
 
   const handleprofile = async() => {
     try{
@@ -171,6 +198,9 @@ const Body = () => {
               </button>
               <button className={styles.editButton} >
                 Logout
+              </button>
+              <button className={styles.editButton} onClick={viewTestimonials}>
+                View Testimonials
               </button>
             </div>
           </div>
