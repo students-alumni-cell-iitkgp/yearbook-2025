@@ -28,7 +28,7 @@ const getitchcontroller = async (req, res) => {
     try {
         const { type } = req.query;
 
-        const itches = type === "all" ? await itchlist.find() : await itchlist.find({ type });
+        const itches = type === "all" ? await Itchlist.find() : await Itchlist.find({ type });
 
         res.status(200).json(itches);
 

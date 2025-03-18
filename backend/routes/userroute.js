@@ -13,7 +13,8 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/login",logincontroller);
-router.get("/verify",authenticateToken,verifycontroller);
+router.get("/getuser",authenticateToken,verifycontroller);
+
 
 
 // router.post("/upload",upload.single("image"),uploadtoCloud,uploadController);

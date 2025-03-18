@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 import styles from "./home.module.css";
 import photo from "../img/Rupesh.1.jpg";
 import Navbar from "./Navbar";
 import "./trending.css";
 import { FcOldTimeCamera } from "react-icons/fc";
+import axios from "axios";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,6 +14,46 @@ const Home = () => {
   const [blur, setBlur] = useState(0);
   const tableRef = useRef(null);
   const inputFile = useRef(null);
+  const [content, setContent] = useState("");
+  const [profile, setProfile] = useState({
+    name: "",
+    caption: "Your Caption Here!",
+    rollno: "",
+    HOR: "",
+    email: "",
+    department: "",
+  });
+
+  const handleNewArticleSubmit = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      // Send the article data to the backend
+      const response = await axios.post(
+        "http://localhost:5000/api/articles",
+        {
+          content,
+          rollno: profile.rollno, // Include rollno here
+        },
+        config
+      );
+
+      if (response.status === 201) {
+        alert("Article uploaded successfully!");
+        setContent(""); // Clear the input field after successful submission
+      } else {
+        alert("Failed to upload article!");
+      }
+    } catch (error) {
+      console.error("Error creating article:", error);
+      alert("Error creating article. Please try again.");
+    }
+  };
 
   const editProfile = () => {
     setIsVisible(true);
@@ -51,6 +92,33 @@ const Home = () => {
     setBlur(0); // Remove blur effect
     document.body.style.overflow = "auto";
   };
+
+  const handleprofile = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response = await axios.get(
+        "http://localhost:5000/api/users/getuser",
+        config
+      );
+
+      // console.log(response.data);
+
+      setProfile(response.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      alert("Invalid Credentials");
+    }
+  };
+
+  useEffect(() => {
+    handleprofile();
+  }, []);
   return (
     <>
       <Navbar></Navbar>
@@ -71,8 +139,8 @@ const Home = () => {
               </div>
               <div className={styles.infoSection}>
                 <div className={styles.nameCaption}>
-                  <h2>Nirmal Patidar</h2>
-                  <p>Your Caption Here!</p>
+                  <h2>{profile.name}</h2>
+                  <p>{profile.caption}</p>
                 </div>
                 <div className={styles.details}>
                   <h3>Introduction:</h3>
@@ -104,7 +172,9 @@ const Home = () => {
                         </svg>
                         Roll No:
                       </strong>
-                      <strong className={styles.detailStrong}>23EE10058</strong>
+                      <strong className={styles.detailStrong}>
+                        {profile.rollno}
+                      </strong>
                     </div>
                     <div>
                       <strong>
@@ -134,7 +204,7 @@ const Home = () => {
                         Hall of Residence:
                       </strong>
                       <strong className={styles.detailStrong}>
-                        RadhaKrishnan
+                        {profile.HOR}
                       </strong>
                     </div>
                     <div>
@@ -165,7 +235,7 @@ const Home = () => {
                         Email:
                       </strong>
                       <strong className={styles.detailStrong}>
-                        rsahoobnd@gmail.com
+                        {profile.email}
                       </strong>
                     </div>
                     <div>
@@ -196,7 +266,7 @@ const Home = () => {
                         Department:
                       </strong>
                       <strong className={styles.detailStrong}>
-                        Electrical Engg.
+                        {profile.department}
                       </strong>
                     </div>
                   </div>
@@ -385,7 +455,7 @@ const Home = () => {
           )}
 
           {isVisibleNewArticle && (
-            <div className={styles.overlay}>
+            <div className={styles.overlay} onClick={closeEditProfile}>
               <div className={styles.editProfile}>
                 <RxCross2
                   className={styles.closeButton}
@@ -393,42 +463,27 @@ const Home = () => {
                   onClick={closeNewArticle}
                 />
                 <h3 style={{ color: "white" }}>Upload A New Article</h3>
-                <table
-                  className={styles.table}
-                  //   style={{ backgroundColor: "#1b2a4e" }}
-                >
-                  <tr>
-                    <td>Select Article Topic:</td>
-                    <td>
-                      <select name="" id="" className="Article-topic">
-                        <option value="Kshitij">Kshitij</option>
-                        <option value="SpringFest">Spring Fest</option>
-                        <option value="AnnualAlumniMeet">
-                          Annual Alumni Meet
-                        </option>
-                        <option value="LifeAtKGP">Life At KGP</option>
-                        <option value="Illumination">Illumination</option>
-                        <option value="hall">Hall</option>
-                        <option value="ephs">Every Place Has A Story</option>
-                        <option value="other">other</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Write Your Article Here:</td>
-                    <td>
-                      <input
-                        type="text"
-                        placeholder="Write your Article Here."
-                        className={styles.inputCapti}
-                      />
-                    </td>
-                  </tr>
+                <table className={styles.table}>
+                  <tbody>
+                    <tr>
+                      <td>Write Your Article Here:</td>
+                      <td>
+                        <textarea
+                          placeholder="Write your article content here."
+                          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          value={content}
+                          rows="5" // Sets the height of the textarea
+                          cols="50" // Optionally set the width of the textarea
+                          onChange={(e) => setContent(e.target.value)}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
                 <input
                   type="button"
                   value="Upload Article"
-                  onClick={closeEditProfile}
+                  onClick={handleNewArticleSubmit}
                   className={styles.saveButton}
                 />
               </div>
