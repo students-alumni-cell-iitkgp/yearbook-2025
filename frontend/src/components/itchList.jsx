@@ -9,170 +9,185 @@ const ItchListPage = () => {
   const [selectedItem, setSelectedItem] = useState("2.2"); // Default selection
   const [itches, setItches] = useState([]); // Store fetched posts
   const [uploading, setUploading] = useState(false); // Track upload status
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null); // Store user data
 
-  // Fetch posts on component mount and when selectedItem changes
+  // Fetch user data when component mounts
   useEffect(() => {
-    fetchItches();
-    handleuser();
-  }, [selectedItem]);
+    handleUser();
+  }, []);
 
-  const fetchItches = async () => {
+  // Fetch user details
+  const handleUser = async () => {
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("No token found! Please log in.");
+        return;
+      }
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       const response = await axios.get(
-        `http://localhost:5000/api/itchlist/getitch?type=${selectedItem}`
+        "http://localhost:5000/api/users/getuser",
+        config
       );
-      setItches(response.data);
+      setUser(response.data);
+
+      // Fetch user's uploaded itches
+      fetchUserItches(response.data._id);
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      console.error("Error fetching user:", error);
+      alert("Invalid Credentials");
     }
   };
 
-  const handleuser= async() => {
-      try{
-        const token = window.localStorage.getItem("token");
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            },
-            }
-  
-        const response = await axios.get("http://localhost:5000/api/users/getuser",config);
-  
-        // console.log(response.data);
-  
-        setUser(response.data);
-  
-       
-      }
-      catch (error) {
-        console.error("Error fetching posts:", error);
-        alert("Invalid Credentials");
-        
-      }
-}
+  // Fetch user's uploaded itches
+  const fetchUserItches = async (userId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/itchlist/user/${userId}`
+      );
+      setItches(response.data);
+    } catch (error) {
+      console.error("Error fetching user's itches:", error);
+    }
+  };
 
+  // Handle file selection
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-
+  // Handle image upload
   const handleUpload = async () => {
     if (!selectedFile) return alert("Please select a file.");
 
-    setUploading(true); // Show loading state
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("No token found! Please log in again.");
+      return;
+    }
+
+    if (!user || !user._id || !user.rollno || !user.name) {
+      alert("User information is missing. Please refresh and try again.");
+      return;
+    }
+
+    setUploading(true);
 
     const formData = new FormData();
-    formData.append("image", selectedFile); // Ensure it matches backend field
+    formData.append("image", selectedFile);
     formData.append("user_id", user._id);
     formData.append("rollno", user.rollno);
+    formData.append("user_name", user.name); // ✅ Include user_name
     formData.append("type", selectedItem);
 
     try {
       await axios.post("http://localhost:5000/api/itchlist/newitch", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      setSelectedFile(null); // Reset file selection
-      fetchItches(); // Refresh images
+      setSelectedFile(null);
+      alert("Photo uploaded successfully! ✅");
 
-      alert("Photo uploaded successfully! ✅"); // Alert after successful upload
+      // Refresh the user's itches list
+      fetchUserItches(user._id);
     } catch (error) {
       console.error("Upload failed:", error);
       alert("Upload failed! ❌ Please try again.");
     } finally {
-      setUploading(false); // Hide loading state
+      setUploading(false);
     }
-  }
+  };
+
   const items = [
     "2.2",
     "ILLU",
-    "HOLI", 
+    "HOLI",
     "TREAT",
-    "BEACH TRIP", 
-    "BONFIRE", 
-    "G.C.", 
-    "TREK", 
-    "HALL DAY", 
+    "BEACH TRIP",
+    "BONFIRE",
+    "G.C.",
+    "TREK",
+    "HALL DAY",
     "PROM",
   ];
 
-  // Dummy images for each item (Replace with actual image paths)
-  const images = {
-    "2.2": "../../src/img/itch/22.jpg",
-    "ILLU": "../../src/img/itch/illu.jpg",
-    "HOLI": "../../src/img/itch/holi.jpg",
-    "TREAT": "../../src/img/itch/treat.jpg",
-    "BONFIRE": "../../src/img/itch/bonfire.jpg",
-    "G.C.": "../../src/img/itch/gc.jpg",
-    "TREK": "../../src/img/itch/trek.jpg",
-    "HALL DAY": "../../src/img/itch/hall_day.jpg",
-    "PROM": "../../src/img/itch/prom.jpg",
-    "BEACH TRIP": "../../src/img/itch/beach_trip.jpg",
-  };
-
   return (
     <>
-    <Navbar></Navbar>
-    <div className="main-body">
-      <div className="content">
-        <div className="itch-list-container">
-          <div className="itch-list-row">
-            <div>
-              {items.map((item, index) => (
+      <Navbar />
+      <div className="main-body">
+        <div className="content">
+          <div className="itch-list-container">
+            <div className="itch-list-row">
+              <div>
+                {items.map((item, index) => (
+                  <button
+                    key={index}
+                    className={`itch-button ${
+                      item === selectedItem ? "active" : ""
+                    }`}
+                    onClick={() => setSelectedItem(item)}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Itch List Card - Dynamic Content */}
+            <div className="itch-card">
+              <h2 className="itch-title">{selectedItem}</h2>
+              <div className="upload-section">
+                <label className="upload-label">Choose Photo</label>
+                <input
+                  className="upload-select"
+                  name="image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+                {selectedFile && <p>Selected File: {selectedFile.name}</p>}
                 <button
-                  key={index}
-                  className={`itch-button ${
-                    item === selectedItem ? "active" : ""
-                  }`}
-                  onClick={() => setSelectedItem(item)}
+                  className="upload-button"
+                  onClick={handleUpload}
+                  disabled={uploading}
                 >
-                  {item}
+                  {uploading ? "Uploading..." : "Upload Photo"}
                 </button>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Itch List Card - Dynamic Content */}
-          <div className="itch-card">
-            <h2 className="itch-title">{selectedItem}</h2>
-            <div className="upload-section">
-              <label className="upload-label">Choose Photo</label>
-              <input
-                className="upload-select"
-                name = "image"
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-              {selectedFile && <p>Selected File: {selectedFile.name}</p>}
-              <button
-                className="upload-button"
-                onClick={handleUpload}
-                disabled={uploading}
-              >
-                {uploading ? "Uploading..." : "Upload Photo"}
-              </button>
-            </div>
-
-            {/* Display Uploaded Photos */}
-            <div className="itch-gallery">
-              {itches.map((itch, index) => (
-                <div key={index} className="itch-item">
-                  <img
-                    src={`http://localhost:5000${itch.photo_url}`}
-                    alt="Uploaded"
-                  />
-                  <p>{itch.user_name}</p>
-                </div>
-              ))}
+              {/* Display Uploaded Photos */}
+              <div className="itch-gallery">
+                {itches.length > 0 ? (
+                  itches
+                    .filter((itch) => itch.type === selectedItem) // Filter by selected category
+                    .map((itch, index) => (
+                      <div key={index} className="itch-item">
+                        <img
+                          src={`http://localhost:5000${itch.photo_url}`}
+                          alt="Uploaded"
+                        />
+                        <p>{itch.user_name}</p>
+                      </div>
+                    ))
+                ) : (
+                  <p>No images uploaded yet for {selectedItem}.</p>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </>
-  )
+  );
 };
 
 export default ItchListPage;
