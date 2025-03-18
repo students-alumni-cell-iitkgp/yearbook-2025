@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./trending.css"; // Ensure correct CSS file import
-import TrendingPost from "./trendingpost";
+import TrendingPost from "./trendingPost";
 import Navbar from "./Navbar";
 
 function Trending() {
