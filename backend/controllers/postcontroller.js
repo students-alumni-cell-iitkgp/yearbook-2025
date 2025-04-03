@@ -1,10 +1,18 @@
-const post = require("../models/postmodel");
+const {Post} = require("../models/postmodel");
 
 const newpostcontroller = async (req,res)=>{
     try {
-        const {user_id,user_name,photo_url,caption} = req.body;
+        const user_id = req.body.user_id;
+        const user_name = req.body.user_name;
+        const photo_url = req.body.photo_url;
+        const caption = req.body.caption;
+
         const date = Date.now();
-        const newpost = new post({
+        // console.log(user_id,user_name,photo_url,caption,date)
+
+        if (!photo_url) return res.status(400).json({ message: "File upload failed" });
+
+        const newpost = new Post({
             user_id,
             user_name,
             photo_url,
@@ -16,22 +24,28 @@ const newpostcontroller = async (req,res)=>{
 
         await newpost.save();
 
-        res.status(200).json({message:"Post created successfully"});
+        return res.status(200).json({message:"Post created successfully"});
 
     } catch (error) {
-        res.status(500).json({message:"Server error"});
+        console.log(error)
+        return res.status(500).json({message:"Server error"});
     }
 }
 
 const likescontroller = async (req,res)=>{
     try {
-        const {post_id} = req.body;
-        const post = await post.findById(post_id);
-        post.likes = post.likes+1;
+        const {post_id,liked} = req.body;
+        const post = await Post.findById(post_id);
+        if(liked){
+            post.likes = post.likes-1;
+        }else{
+            post.likes = post.likes +1;
+        }
+        
         await post.save();
-        res.status(200).json({message:"Liked"});
+        return res.status(200).json({message:"Likes updated"});
         } catch (error) {
-        res.status(500).json({message:"Server error"});
+        return res.status(500).json({message:"Server error"});
         }
         
 }
@@ -45,13 +59,13 @@ const commentscontroller = async (req,res)=>{
             date:Date.now()
         }
 
-        const post = await post.findById(post_id);
+        const post = await Post.findById(post_id);
         post.comments.push(comment_object);
         await post.save();
-        res.status(200).json({message:"Commented"});
+        return res.status(200).json({message:"Commented"});
     }
     catch (error) {
-        res.status(500).json({message:"Server error"});
+        return res.status(500).json({message:"Server error"});
     }
 }
 
@@ -61,23 +75,23 @@ const getpostcontroller = async (req,res)=>{
         const type = req.query.type;
 
         if(type==="all"){
-            const posts = await post.find();
-            res.status(200).json(posts);
+            const posts = await Post.find();
+            return res.status(200).json(posts);
         }
         else if(type==="likes"){
-            const posts = await post.find().sort({likes:-1});
-            res.status(200).json(posts);
+            const posts = await Post.find().sort({likes:-1});
+            return res.status(200).json(posts);
         }
 
         else if(type==="date"){
-            const posts = await post.find().sort({date:-1});
-            res.status(200).json(posts);
+            const posts = await Post.find().sort({date:-1});
+            return res.status(200).json(posts);
         }
     
-        const posts = await post.find();
-        res.status(200).json(posts);
+        const posts = await Post.find();
+        return res.status(200).json(posts);
     } catch (error) {
-        res.status(500).json({message:"Server error"});
+        return res.status(500).json({message:"Server error"});
     }
 }
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const {logincontroller,verifycontroller }= require("../controllers/usercontroller");
+const {logincontroller,verifycontroller,addtestimonialcontroller }= require("../controllers/usercontroller");
 
 const {authenticateToken} = require("../middlewares/authMiddleware");
 
@@ -14,6 +14,7 @@ router.get("/",(req,res)=>{
 
 router.post("/login",logincontroller);
 router.get("/getuser",authenticateToken,verifycontroller);
+router.post("/addtestimonial",addtestimonialcontroller)
 
 
 

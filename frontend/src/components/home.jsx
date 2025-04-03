@@ -15,6 +15,9 @@ const Home = () => {
   const tableRef = useRef(null);
   const inputFile = useRef(null);
   const [content, setContent] = useState("");
+  const [caption, setCaption] = useState("");
+  const [postImage, setPostImage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [profile, setProfile] = useState({
     name: "",
     caption: "Your Caption Here!",
@@ -23,6 +26,62 @@ const Home = () => {
     email: "",
     department: "",
   });
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setPostImage(e.target.files[0]);
+    }
+  };
+
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+    
+    if (!postImage) {
+      alert('Please select an image to upload');
+      return;
+    }
+    
+    try {
+      setIsSubmitting(true);
+      
+      // Create a FormData object to send the image and caption
+      const formData = new FormData();
+      formData.append('image', postImage);
+      formData.append('caption', caption);
+      formData.append('user_id', profile._id);
+      formData.append('rollno', profile.rollno);
+      formData.append('user_name', profile.name);
+      formData.append('type', "post");
+      
+      const token = window.localStorage.getItem("token");
+      
+      // Replace with your actual API endpoint
+      const response = await axios.post(
+        "http://localhost:5000/api/posts/upload",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      
+      if (response.status === 200) {
+        alert("Post uploaded successfully!");
+        // Close the modal and reset the form
+        closeNewPost();
+      } else {
+        alert("Failed to upload post!");
+      }
+      
+    } catch (error) {
+      console.error("Error uploading post:", error);
+      alert("Error uploading post. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleNewArticleSubmit = async () => {
     try {
@@ -38,12 +97,13 @@ const Home = () => {
         "http://localhost:5000/api/articles",
         {
           content,
-          rollno: profile.rollno, // Include rollno here
+          rollno: profile.rollno, 
+          name: profile.name// Include rollno here
         },
         config
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         alert("Article uploaded successfully!");
         setContent(""); // Clear the input field after successful submission
       } else {
@@ -84,6 +144,8 @@ const Home = () => {
   };
   const closeNewPost = () => {
     setIsVisibleNewPost(false);
+    setCaption("");
+    setPostImage(null);
     setBlur(0); // Remove blur effect
     document.body.style.overflow = "auto";
   };
@@ -289,6 +351,8 @@ const Home = () => {
               </div>
             </div>
 
+            <div className={styles.addSection}> 
+
             <button className={styles.testimonialButton}>
               Write Testimonials{" "}
             </button>
@@ -298,6 +362,8 @@ const Home = () => {
             <button className={styles.newPostButton} onClick={newArticle}>
               New Article
             </button>
+
+            </div>
 
             <p className={styles.testimonialText}>
               Here's what your friends have written about you! Your testimonials
@@ -412,44 +478,52 @@ const Home = () => {
                   onClick={closeNewPost}
                 />
                 <h3 style={{ color: "white" }}>Upload A New Post</h3>
-                <table
-                  className={styles.table}
-                  //   style={{ backgroundColor: "#1b2a4e" }}
-                >
-                  <tr>
-                    <td>Select Picture:</td>
-                    <td>
-                      <label htmlFor="pic" className={styles.fileLabel}>
-                        <FcOldTimeCamera
-                          size={22}
-                          style={{ translate: "0px 4px" }}
-                        ></FcOldTimeCamera>{" "}
-                        Browse File
-                      </label>
-                      <input
-                        type="file"
-                        id="pic"
-                        className={styles.hiddenInput}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Caption:</td>
-                    <td>
-                      <input
-                        type="text"
-                        placeholder="Upload your Caption Here."
-                        className={styles.inputCapti}
-                      />
-                    </td>
-                  </tr>
-                </table>
-                <input
-                  type="button"
-                  value="Upload Post"
-                  onClick={closeEditProfile}
-                  className={styles.saveButton}
-                />
+                
+                <form onSubmit={handleSubmission}>
+                  <table className={styles.table}>
+                    <tbody>
+                      <tr>
+                        <td>Select Picture:</td>
+                        <td>
+                          <label htmlFor="pic" className={styles.fileLabel}>
+                            <FcOldTimeCamera
+                              size={22}
+                              style={{ translate: "0px 4px" }}
+                            />
+                            {" "}Browse File
+                          </label>
+                          <input
+                            type="file"
+                            id="pic"
+                            name="postImage"
+                            className={styles.hiddenInput}
+                            onChange={handleImageChange}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Caption:</td>
+                        <td>
+                          <input
+                            type="text"
+                            name="caption"
+                            placeholder="Upload your Caption Here."
+                            className={styles.inputCapti}
+                            value={caption}
+                            onChange={(e) => setCaption(e.target.value)}
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button
+                    type="submit"
+                    className={styles.saveButton}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Uploading..." : "Upload Post"}
+                  </button>
+                </form>
               </div>
             </div>
           )}

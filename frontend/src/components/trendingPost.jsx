@@ -1,100 +1,197 @@
-import { useState } from "react";
-import "./trending.css"; // Ensure correct CSS file import
+import React, { useState } from "react";
+import axios from "axios";
 
-function TrendingPost({ post }) {
-  const [showCommentInput, setShowCommentInput] = useState(false);
-  const [comments, setComments] = useState(post.comments || []);
-  const [newComment, setNewComment] = useState("");
+const TrendingPost = ({ post }) => {
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
+  const [likesCount, setLikesCount] = useState(post.likes || 0);
+  const [showComments, setShowComments] = useState(false);
+  const [newComment, setNewComment] = useState("");
+  const [comments, setComments] = useState(post.comments || []);
 
-  const handleCommentClick = () => {
-    setShowCommentInput(!showCommentInput);
-  };
 
-  const handlePostComment = () => {
-    if (newComment.trim()) {
-      setComments([...comments, { text: newComment, author: "You" }]);
-      setNewComment("");
+
+  // Format timestamp to readable date
+  const formatDate = (timestamp) => {
+    if (!timestamp) return "";
+    
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) {
+      const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+      if (diffHours === 0) {
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+        return `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+      }
+      return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+    } else if (diffDays < 7) {
+      return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+    } else {
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
     }
   };
 
-  const handleLikeClick = () => {
+  // Toggle like status
+  const handleLike = async(post_id) => {
+
+    try{
+      await axios.post(
+        "http://localhost:5000/api/posts/like",{
+          post_id,
+          liked
+        }
+      )
+
+      if (liked) {
+        setLikesCount(likesCount - 1);
+      }
+      else {
+        setLikesCount(likesCount + 1);
+      }
+
+
     setLiked(!liked);
-    setLikeCount((prevCount) => (liked ? prevCount - 1 : prevCount + 1));
+    }catch(error){
+      console.log("error liking")
+    }
+    
+  };
+
+  // Toggle comments visibility
+  const handleToggleComments = () => {
+    setShowComments(!showComments);
+  };
+
+  // Add new comment
+  const handleAddComment = async(e) => {
+    e.preventDefault();
+    if (newComment.trim() === "") return;
+    
+    const comment = {
+      user_name: post.user_name,
+      date: Date.now(),
+      comment: newComment,
+    };
+
+    // Send comment to backend
+    await axios.post("http://localhost:5000/api/posts/comment", {
+      post_id: post._id,
+      comment: newComment,
+      user_name: post.user_name,
+    })
+    
+    setComments([...comments, comment]);
+    setNewComment("");
+  };
+
+  // Get initials for avatar
+  const getInitials = (name) => {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   return (
-    <center>
-
-      <div className="post">
+    <div className="post">
+      {/* Post header with profile info */}
       <div className="post-header">
-        <div className="profile-pic"><img src="../../src/img/profilepic_test2.jpg" alt="profile" /></div>
-        <span className="author">{post.author.name}</span>
+      
+          
+            <div className="avatar-initials">{getInitials(post.user_name)}</div>
+        
+        
+        <div className="profile-name">{post.user_name}</div>
+        <div className="post-timestamp">{formatDate(post.date)}</div>
       </div>
 
-      <div className="post-content">
-        <div className="post-image">
-          <img src="../../src/img/post_test.jpg" alt="post" />
-          </div>
-        <p className="caption">{post.caption}</p>
-      </div>
+   {/* Post image if available */}
+{post.photo_url && (
+  <div className="post-image" style={{ width: "100%", height: "100%" }}>
+    <img
+      src={`http://localhost:5000/image?imageName=${post.photo_url}`}
+      alt="Post"
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "contain", // Ensures the image covers the container
+      }}
+    />
+  </div>
+)}
 
+
+      {/* Post caption */}
+      <div className="caption">{post.caption}</div>
+
+      {/* Post actions (like, comment) */}
       <div className="post-actions">
-        <button  style={{ outline: 'none' }} className={liked ? "liked" : ""} onClick={handleLikeClick} >
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M24.0711 18.1421L18.4142 23.799C17.6332 24.58 16.3668 24.58 15.5858 23.799L9.92894 18.1421C7.97632 16.1895 7.97632 13.0237 9.92894 11.071C11.8816 9.11841 15.0474 9.11841 17 11.071" stroke="#A5D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M24.0709 18.1421C26.0236 16.1895 26.0236 13.0237 24.0709 11.071C22.1183 9.11841 18.9525 9.11841 16.9999 11.071" stroke="#A5D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-{likeCount}
+      <button 
+  className={liked ? "liked" : ""} 
+  onClick={() => handleLike(post._id)} // Pass the post.id when calling handleLike
+>
+          {liked ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#A5D7E8" stroke="#A5D7E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          )}
+          <span className="like-count">{likesCount}</span>
         </button>
-        <button  style={{ outline: 'none' }} onClick={handleCommentClick}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_317_497)">
-<path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.4876 3.36093 14.891 4 16.1272L3 21L7.8728 20C9.10904 20.6391 10.5124 21 12 21Z" stroke="#A5D7E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="12" y="12" width="0.01" height="0.01" stroke="#A5D7E8" stroke-width="3" stroke-linejoin="round"/>
-<rect x="7.5" y="12" width="0.01" height="0.01" stroke="#A5D7E8" stroke-width="3" stroke-linejoin="round"/>
-<rect x="16.5" y="12" width="0.01" height="0.01" stroke="#A5D7E8" stroke-width="3" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_317_497">
-<rect width="24" height="24" fill="white"/>
-</clipPath>
-</defs>
-</svg>
-</button>
+        
+        <button onClick={handleToggleComments}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <span className="like-count">{comments.length}</span>
+        </button>
       </div>
 
-      {showCommentInput && (
+      {/* Comments section */}
+      {showComments && (
         <div className="comment-section">
-          <div className="profile-pic small"></div>
-          <input
-            type="text"
-            placeholder="Write your comment..."
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          />
-          <button className="post-btn" onClick={handlePostComment}>
-            Post Comment
-          </button>
-        </div>
-      )}
-
-      {comments.length > 0 && (
-        <div className="comments-list">
+          <div className="comments-header">
+            {comments.length > 0 
+              ? `${comments.length} Comment${comments.length !== 1 ? 's' : ''}` 
+              : 'No comments yet'}
+          </div>
+          
           {comments.map((comment, index) => (
             <div key={index} className="comment">
-              <div className="profile-pic small"><img src="../../src/img/profilepic_test2.jpg" alt="" /></div>
-                <span className="comment-author">{comment.author}</span>{" "}
-                <span className="comment-text">
-                  {comment.text}
-                  </span>
+              <div className="comment-avatar">
+                {getInitials(comment.user_name)}
+              </div>
+              <div className="comment-content">
+                <div className="comment-author">{comment.user_name}</div>
+                <div className="comment-text">{comment.comment}</div>
+              </div>
             </div>
           ))}
+          
+          <form className="add-comment" onSubmit={(e) => handleAddComment(e)}>
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <button type="submit" className="post-btn">Post</button>
+          </form>
         </div>
       )}
     </div>
-    </center>
   );
-}
+};
 
 export default TrendingPost;

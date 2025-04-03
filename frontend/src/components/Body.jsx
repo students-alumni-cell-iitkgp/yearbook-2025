@@ -196,7 +196,7 @@ const Body = () => {
               <button className={styles.editButton} onClick={editProfile}>
                 Edit Profile
               </button>
-              <button className={styles.editButton} >
+              <button className={styles.editButton} onClick={handlelogout}>  
                 Logout
               </button>
               <button className={styles.editButton} onClick={viewTestimonials}>

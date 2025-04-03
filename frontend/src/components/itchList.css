@@ -8,105 +8,18 @@
   padding: 20px;
 }
 
-  
-  .itch-list-row {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    width: 20%;
-    padding: 10px;
-  }
-  .itch-list-row div{
-    margin: 10px;
-  }
-  
-  .itch-button {
-    background: #A5D7E8;
-    border: none;
-    padding: 12px;
-    color: #000;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    min-width: 120px;
-    text-align: center;
-    margin: 10px;
-    outline: none;
-  }
-  
-  .itch-button.active {
-    background: #0B2447;
-    color: white;
-    border: solid 2px #A5D7E8;
-  }
-  
+.itch-list-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  width: 20%;
+  padding: 10px;
+}
 
-  .upload-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    padding: 10px;
-  }
-  
-
-  .upload-label {
-    font-size: 18px;
-  }
-  
-  .upload-select {
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    background-color: #A5D7E8;
-    color: #000;
-  }
-  
-  .upload-button {
-    color: #000;
-    background: #A5D7E8;
-    border: none;
-    padding: 10px;
-    width: 150px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 20px;
-  }
-  
-
-  .itch-card {
-    border: solid 3px #A5D7E8;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    max-width: 500px;
-    margin-top: 20px;
-    margin-left: 100px;
-  }
-  
-
-  .itch-title {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  
-
-  .itch-image img {
-    height: 350px;
-    object-fit: cover;
-    border-radius: 5px;
-    background-color: aliceblue;
-  }
-  .itch-image{
-    height: 350px;
-    object-fit: cover;
-    border-radius: 5px;
-    background-color: aliceblue;
-  }
-  
+.itch-list-row div {
+  margin: 10px;
+}
 
 .itch-button {
   background: #A5D7E8;
@@ -116,143 +29,220 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  width: 200px;
+  min-width: 120px;
+  text-align: center;
+  margin: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.itch-button:hover {
+  background: #bce4f2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .itch-button.active {
   background: #0B2447;
   color: white;
   border: solid 2px #A5D7E8;
+  box-shadow: 0 2px 10px rgba(165, 215, 232, 0.6);
 }
-
-
-.itch-card {
-  border: solid 3px #A5D7E8;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-  flex: 1;
-  max-width: 500px;
-}
-
-
-.itch-title {
-  font-size: 24px;
-  margin-bottom: 15px;
-}
-
-
-.itch-image {
-  width: 100%;
-  border-radius: 5px;
-  background-color: aliceblue;
-}
-
 
 .upload-section {
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 20px;
+  position: relative;
 }
 
 .upload-label {
   font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.upload-section input{
-  color: #000;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #A5D7E8;
 }
 
 .upload-select {
-  padding: 8px;
+  padding: 10px;
   border-radius: 5px;
-  border: none;
-  height: 20px;
-  background-color:  #A5D7E8;
+  border: 2px solid #A5D7E8;
+  background-color: rgba(165, 215, 232, 0.2);
+  color: #fff;
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.3s ease;
+}
+
+.upload-select:hover {
+  background-color: rgba(165, 215, 232, 0.3);
 }
 
 .upload-button {
   color: #000;
   background: #A5D7E8;
   border: none;
-  padding: 10px;
-  width: 100%;
-  margin-top: 10px;
+  padding: 12px 20px;
+  width: 180px;
   cursor: pointer;
   font-size: 16px;
   border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.upload-button:hover {
+  background: #76b5c5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
-.menu-toggle {
-  display: none;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: transparent;
+.upload-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.itch-card {
+  border: solid 3px #A5D7E8;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
   color: white;
-  font-size: 24px;
-  border: none;
-  cursor: pointer;
+  max-width: 500px;
+  margin-top: 20px;
+  margin-left: 100px;
+  background: rgba(11, 36, 71, 0.7);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  transition: all 0.5s ease;
 }
 
+.itch-card:hover {
+  box-shadow: 0 8px 25px rgba(165, 215, 232, 0.3);
+  transform: translateY(-5px);
+}
 
+.itch-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #A5D7E8;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
+.itch-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 25px;
+}
 
+.itch-item {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+}
 
+.itch-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(165, 215, 232, 0.5);
+}
+
+.itch-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+}
+
+.itch-item:hover img {
+  transform: scale(1.1);
+}
+
+.itch-item p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #A5D7E8;
+  font-weight: 500;
+}
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(46, 125, 50, 0.9);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+}
+
+.success-message span {
+  font-size: 20px;
+}
+
+/* Loading animation for upload button */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.upload-button:disabled {
+  animation: pulse 1.5s infinite;
+}
+
+/* Mobile responsiveness with animations */
 @media (max-width: 800px) {
   .itch-list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-
+    height: auto;
   }
-  .itch-list-row{
-    /* position: absolute; */
-    /* top: 600px; */
-    display: block;
+  
+  .itch-list-row {
     width: 100%;
     padding: 0;
-    
+    margin-bottom: 20px;
   }
-  .itch-card{
-    /* position: absolute; */
-    /* top: 0; */
+  
+  .itch-card {
     min-width: 300px;
     width: 85%;
-    height: 40%;
-    transition: 0.3s ease-in-out;
-    margin-left: 0px;
+    margin-left: 0;
     max-width: 500px;
-
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  .itch-image{
-    height: 40%;
-    transition: 0.3s ease-in-out;
-
-  }
-  .itch-image img{
-    height: 100%;
-    transition: 0.3s ease-in-out;
-
-  }
-
-
-  /* .itch-sidebar {
-    background: #0B2447;
-    padding: 20px;
-    transition: left 0.3s ease;
-  }
-  .itch-sidebar.open {
-    left: 0;
-  }*/
-
+  
   .itch-button {
-    margin: 2px;
+    margin: 5px;
     min-width: 50px;
     width: 30%;
-
-
-}
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .itch-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 }

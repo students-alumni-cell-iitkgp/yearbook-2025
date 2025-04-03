@@ -202,7 +202,7 @@
   
   
 .testimonialButton:hover{
-    background-color: #A5D7E8;
+    background-color: #7bc1d8;
 }
 .editButton:hover{
     background-color: #A5D7E8;
@@ -225,12 +225,21 @@
 }
 .testimonialButton {
   width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .newArticleButton{
   width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .newPostButton{
   width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Tab1:hover {
@@ -253,6 +262,15 @@
   opacity: 0.8;
 }
 
+.addSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 20px;
+  position: relative;
+}
 /* Responsive Design */
 @media (max-width: 1300px){
   .profileCard {

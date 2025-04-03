@@ -1,12 +1,12 @@
 const express = require("express");
-const Article = require("../models/articlemodel");
+const {Article} = require("../models/articlemodel");
 // Assuming you have an Article model
 const router = express.Router();
 
 // POST route to create a new article
 router.post("/", async (req, res) => {
   try {
-    const { title, content, author, rollno } = req.body;
+    const {  content, name, rollno } = req.body;
 
     // Validation: Check if the content is empty
     if (!content || content.trim() === "") {
@@ -15,10 +15,10 @@ router.post("/", async (req, res) => {
 
     // Create a new article
     const newArticle = new Article({
-      title,
       content,
-      author,
+      name,
       rollno,
+      date : Date.now(), // Set the date to the current date
     });
 
     // Save article to the database
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 
     // Return success response
     res
-      .status(201)
+      .status(200)
       .json({ message: "Article created successfully", article: newArticle });
   } catch (error) {
     console.error(error);

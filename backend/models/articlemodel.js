@@ -10,11 +10,19 @@ const articleSchema = new mongoose.Schema(
       type: String, // Store the roll number as a string
       required: true,
     },
+    name: {
+      type: String,
+      required: true,
+    },
+    date:{
+      type: Date,
+      required: true,
+    }
   },
-  { timestamps: true }
+  
 );
 
 // Create a model for the article
 const Article = mongoose.model("Article", articleSchema);
 
-module.exports = Article;
+module.exports = {Article};

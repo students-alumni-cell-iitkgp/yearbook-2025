@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Polls from "./components/polls";
 import ViewItchList from "./components/viewItchList";
 import ItchListPage from "./components/itchList";
-import Login from "./components/login";
+// import Login from "./components/login";
 import Body from "./components/Body"
 import { BrowserRouter, Routes, Route ,NavLink  } from "react-router-dom";
 import './App.css'

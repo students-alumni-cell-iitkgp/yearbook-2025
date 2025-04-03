@@ -48,4 +48,33 @@ const verifycontroller = async (req, res) => {
 
 }
 
-module.exports = { logincontroller, verifycontroller };
+const addtestimonialcontroller = async (req,res) => {
+    try{
+        
+        const {to_user_name, from_user,to_user_rollno, content} = req.body;
+        const user = await User.findOne({rollno:to_user_rollno});
+
+        const testimonial = {
+            to_user_name: to_user_name,
+            from_user:from_user,
+            to_user_rollno:to_user_rollno,
+            content:content,
+
+        }
+
+        user.testimonials.push(testimonial);
+
+        await user.save();
+
+        res.status(200).json({ message: "Testimonial added successfully"});
+        
+
+    }
+    catch(error){
+        res.status(500).json({ message: "Server error", error: error.message });
+
+    }
+    
+}
+
+module.exports = { logincontroller, verifycontroller ,addtestimonialcontroller};
