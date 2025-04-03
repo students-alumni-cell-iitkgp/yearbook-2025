@@ -1,13 +1,13 @@
-# Use Node.js image for building the React app
-FROM node:18.7.1 AS build
+# Stage 1: Build the React app using Node.js
+FROM node:18 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json for installing dependencies
+# Copy package.json and package-lock.json (or yarn.lock) for installing dependencies
 COPY package*.json ./
 
-# Install dependencies
+# Install the frontend dependencies
 RUN npm install
 
 # Copy the rest of the React app code
@@ -16,10 +16,10 @@ COPY . .
 # Build the React app for production
 RUN npm run build
 
-# Use the official Nginx image to serve the built React app
+# Stage 2: Use Nginx to serve the built React app
 FROM nginx:alpine
 
-# Copy the build folder from the build stage to the Nginx container
+# Copy the built React app from the previous stage to Nginx's default directory
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose port 80 for Nginx (frontend)
