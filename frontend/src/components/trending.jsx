@@ -15,8 +15,16 @@ function Trending() {
 
   const getallposts = async (type) => {
     try {
+      const token = window.localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       const response = await axios.get(
-        `http://localhost:5000/api/posts/getpost?type=${type}`
+        `http://localhost:5000/api/posts/getpost?type=${type}`,
+        config
       );
       setPosts(response.data); // Now, you set posts after the API response
     } catch (error) {

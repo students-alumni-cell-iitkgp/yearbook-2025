@@ -65,14 +65,14 @@ const Navbar = () => {
               View Itch List
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink 
               to="/Testimonial" 
               className={({ isActive }) => isActive ? "navbar-active" : "nav-link"}
             >
               Testimonial
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink 
               to="/Polls" 
@@ -98,15 +98,15 @@ const Navbar = () => {
             </button>
           </div>
 
-          <button className="notification-button">
+          {/* <button className="notification-button">
             <FaBell className="notification-icon" />
-          </button>
+          </button> */}
 
-          <NavLink className="profile-link" to="/profile">
+          {/* <NavLink className="profile-link" to="/profile">
             <div className="profile-container">
               <img src="/src/img/profilepic_test2.jpg" alt="Profile" />
             </div>
-          </NavLink>
+          </NavLink> */}
         </div>
 
         {/* Mobile Menu Button */}
@@ -172,7 +172,7 @@ const Navbar = () => {
                 View Itch List
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink 
                 to="/Testimonial" 
                 className={({ isActive }) => isActive ? "mobile-active" : ""}
@@ -180,7 +180,7 @@ const Navbar = () => {
               >
                 Testimonial
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink 
                 to="/Polls" 
@@ -190,7 +190,7 @@ const Navbar = () => {
                 Polls
               </NavLink>
             </li>
-            <li className="mobile-profile">
+            {/* <li className="mobile-profile">
               <NavLink 
                 to="/profile" 
                 className="mobile-profile-link"
@@ -199,7 +199,7 @@ const Navbar = () => {
                 <img src="/src/img/profilepic_test2.jpg" alt="Profile" />
                 <span>My Profile</span>
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       )}

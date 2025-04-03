@@ -77,4 +77,30 @@ const addtestimonialcontroller = async (req,res) => {
     
 }
 
-module.exports = { logincontroller, verifycontroller ,addtestimonialcontroller};
+const updateusercontroller = async (req,res)=>{
+    try {
+        const user_id = req.body.user_id;
+        const pro_pic = req.body.photo_url;
+        const caption = req.body.caption;
+
+        
+        // console.log(user_id,user_name,photo_url,caption,date)
+
+        if (!pro_pic) return res.status(400).json({ message: "File upload failed" });
+
+        const user = await User.findById(user_id);
+        user.pro_pic = pro_pic;
+        user.caption = caption;
+        await user.save();
+
+
+        
+        return res.status(200).json({message:"User updated successfully"});
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Server error"});
+    }
+}
+
+module.exports = { logincontroller, verifycontroller ,addtestimonialcontroller,updateusercontroller};

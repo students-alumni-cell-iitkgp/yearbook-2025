@@ -13,6 +13,7 @@ import LoginPage from "./components/login";
 import Home from "./components/home";
 import AdminPage from "./components/admin";
 import TestimonialGiven from "./components/givenTestimonial";
+import Testimonial from "./components/testimonial";
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/trending" Component={Trending}></Route>
         <Route path="/admin" Component={AdminPage}></Route>
         <Route path="/testimonialgiven" Component={TestimonialGiven}></Route>
+        <Route path="/writetestimonial" Component={Testimonial}></Route>
       </Routes>
       {/* <Login></Login> */}
       {/* <Trending></Trending> */}

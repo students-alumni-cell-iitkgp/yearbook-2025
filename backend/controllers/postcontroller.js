@@ -74,6 +74,8 @@ const getpostcontroller = async (req,res)=>{
 
         const type = req.query.type;
 
+        console.log(type);
+
         if(type==="all"){
             const posts = await Post.find();
             return res.status(200).json(posts);
@@ -86,6 +88,17 @@ const getpostcontroller = async (req,res)=>{
         else if(type==="date"){
             const posts = await Post.find().sort({date:-1});
             return res.status(200).json(posts);
+        }
+        else if(type==="user"){
+            // console.log(req.user);
+            const user_id = req.user.id;
+            // console.log(user_id);
+            const posts = await Post.find({user_id:user_id});
+
+
+            return res.status(200).json(posts);
+    
+
         }
     
         const posts = await Post.find();

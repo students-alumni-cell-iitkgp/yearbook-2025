@@ -1,6 +1,8 @@
 const express = require("express");
 const {uploadMiddleware} = require("../middlewares/photouploadMiddleware");
 const {newpostcontroller,likescontroller,commentscontroller,getpostcontroller} = require("../controllers/postcontroller");
+const { authenticateToken } = require("../middlewares/authMiddleware");
+
 
 const router = express.Router();
 
@@ -19,7 +21,7 @@ router.get("/",(req,res)=>{
 router.post("/upload",uploadMiddleware,newpostcontroller);
 router.post("/like",likescontroller);
 router.post("/comment",commentscontroller);
-router.get("/getpost",getpostcontroller);
+router.get("/getpost",authenticateToken,getpostcontroller);
 
 // router.post("/upload",upload.single("image"),uploadtoCloud,uploadController);
 

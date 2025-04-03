@@ -193,35 +193,37 @@ const Body = () => {
               <p>
                 <strong>🏛 Department:</strong> Agricultural and Food Engineering
               </p> */}
+              <div className={styles.buttonContainer}>
               <button className={styles.editButton} onClick={editProfile}>
                 Edit Profile
               </button>
               <button className={styles.editButton} onClick={handlelogout}>  
                 Logout
               </button>
-              <button className={styles.editButton} onClick={viewTestimonials}>
-                View Testimonials
-              </button>
+              
+
+              </div>
+              <div className={styles.buttonContainer}>
+              <a className={styles.editButton} href = "/writeTestimonial">
+                Write Testimonials
+              </a>
+
+              </div>
             </div>
           </div>
         </div>
 
-            <button className={styles.testimonialButton}>
-              Write Testimonials
-            </button>
+           
 
-            <p className={styles.testimonialText}>
-              Here's what your friends have written about you! Your testimonials
-              are displayed below.
-            </p>
+          
 
             <div className={styles.tabs}>
               <button className={styles.Tab1}>Gallery</button>
-              <button className={styles.Tab1}>Testimonials</button>
+             
               <button className={styles.Tab1}>Articles</button>
             </div>
 
-            <p className={styles.noTestimonials}>No Testimonials Given!</p>
+    
           </div>
           {isVisible && (
             <div className={styles.overlay}>

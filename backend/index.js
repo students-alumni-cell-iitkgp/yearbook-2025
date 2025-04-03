@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userroute");
 const postRoutes = require("./routes/postroute");
 const itchlistRoutes = require("./routes/itchlistroute");
 const articleRoutes = require("./routes/articleroute"); 
+const pollsRoutes = require("./routes/pollsroute"); // Import polls routes
 const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require('path');
@@ -28,6 +29,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/itchlist", itchlistRoutes);
 app.use("/api/articles", articleRoutes); // Using article routes
+app.use("/api/polls", pollsRoutes); // Using polls routes
 
 // Sample API route
 app.get("/", (req, res) => {

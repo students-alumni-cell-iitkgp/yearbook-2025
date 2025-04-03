@@ -1,5 +1,6 @@
 const express = require("express");
 const {Article} = require("../models/articlemodel");
+const { authenticateToken } = require("../middlewares/authMiddleware");
 // Assuming you have an Article model
 const router = express.Router();
 
@@ -33,5 +34,18 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Error creating article" });
   }
 });
+
+router.get("/getarticles",authenticateToken,
+  async (req, res) => {
+    try {
+      const rollno = req.user.rollno;
+      const articles = await Article.find({rollno:rollno});
+      res.status(200).json( articles );
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error fetching articles" });
+        }
+        }
+)
 
 module.exports = router;

@@ -142,7 +142,7 @@ function LoginPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <a href="">Write Testimonials</a>
+              <a href="/writetestimonial">Write Testimonials</a>
             </motion.div>
           </div>
         </form>
