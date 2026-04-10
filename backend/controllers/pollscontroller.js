@@ -16,6 +16,10 @@ const POLL_TITLES = [
   "Swagmaster of the batch",
   "Jetha lal of the batch",
   "Naina Talwaar of the Batch",
+  "Hermione Granger of the Batch",
+  "Speed Star of the Batch",  
+  "The Elsa of the Batch",  
+  "Doraemon of the Batch", 
 ];
 
 // FIX 3: reject anything that looks like a plain name rather than a roll number.
