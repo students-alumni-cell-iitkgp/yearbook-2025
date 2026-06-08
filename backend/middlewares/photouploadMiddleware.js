@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 // ---------------------------------------------------------------------------
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB
+  limits: { fileSize: 25 * 1024 * 1024 }, // 25 MB
   fileFilter: (_req, file, cb) => {
     const allowed = /jpeg|jpg|png/;
     const validExt  = allowed.test(path.extname(file.originalname).toLowerCase());
